@@ -32,3 +32,26 @@
 2024-11-11 19:15:05,451 - 127.0.0.1 - - [11/Nov/2024 19:15:05] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
 2024-11-11 19:15:05,452 - 127.0.0.1 - - [11/Nov/2024 19:15:05] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
 2024-11-11 19:18:41,424 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ƒhƒLƒ…ƒƒ“ƒg\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
+2024-11-11 19:18:46,261 -  * Debugger is active!
+2024-11-11 19:18:46,321 -  * Debugger PIN: 588-383-424
+2024-11-11 19:19:24,381 - User input: “Œ‹, Translated: Tokyo, Weather: ”–‚¢‰_, Temp: 18.1, Advice: {'advice': '°‚ê‚Å•—‚ª‚È‚¯‚ê‚ÎƒJ[ƒfƒBƒKƒ“‚ÅOK‚Å‚·‚ªA•—‚ª‚ ‚éê‡‚ÍƒWƒƒƒPƒbƒg‚â”–è‚ÌƒR[ƒg‚ğ’…—p‚µ‚Ä‚­‚¾‚³‚¢B', 'image_url': 'https://example.com/images/comfortable.png'}
+2024-11-11 19:19:24,383 - 127.0.0.1 - - [11/Nov/2024 19:19:24] "POST /api/weather HTTP/1.1" 200 -
+2024-11-11 19:21:10,362 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ƒhƒLƒ…ƒƒ“ƒg\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
+2024-11-11 19:21:13,282 -  * Debugger is active!
+2024-11-11 19:21:13,292 -  * Debugger PIN: 588-383-424
+2024-11-11 19:22:39,636 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ƒhƒLƒ…ƒƒ“ƒg\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
+2024-11-11 19:22:42,430 -  * Debugger is active!
+2024-11-11 19:22:42,440 -  * Debugger PIN: 588-383-424
+2024-11-11 19:23:31,750 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ƒhƒLƒ…ƒƒ“ƒg\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
+2024-11-11 19:23:34,713 -  * Debugger is active!
+2024-11-11 19:23:34,722 -  * Debugger PIN: 588-383-424
+2024-11-11 19:25:30,980 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ƒhƒLƒ…ƒƒ“ƒg\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
+2024-11-11 19:25:33,924 -  * Debugger is active!
+2024-11-11 19:25:33,936 -  * Debugger PIN: 588-383-424
+2024-11-11 19:27:10,614 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ƒhƒLƒ…ƒƒ“ƒg\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
+2024-11-11 19:27:13,503 -  * Debugger is active!
+2024-11-11 19:27:13,511 -  * Debugger PIN: 588-383-424
+2024-11-11 19:28:55,164 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ƒhƒLƒ…ƒƒ“ƒg\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
+2024-11-11 19:28:57,987 -  * Debugger is active!
+2024-11-11 19:28:58,024 -  * Debugger PIN: 588-383-424
+2024-11-11 19:29:41,226 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ƒhƒLƒ…ƒƒ“ƒg\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
