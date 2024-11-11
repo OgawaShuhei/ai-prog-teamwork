@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 import requests
-import os
+
 app = Flask(__name__)
 
-API_KEY = os.environ.get('OPENWEATHERMAP_API_KEY')  # 環境変数からAPIキーを取得
+API_KEY = '1c33c613c2357110a08a8964f4aa621f'  # ここにOpenWeatherMapのAPIキーを入力
+
 @app.route('/')
 def index():
     return render_template('index.html')
