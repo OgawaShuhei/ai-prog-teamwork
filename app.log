@@ -76,3 +76,24 @@
 2024-11-11 19:33:36,684 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ƒhƒLƒ…ƒƒ“ƒg\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
 2024-11-11 19:33:39,475 -  * Debugger is active!
 2024-11-11 19:33:39,484 -  * Debugger PIN: 588-383-424
+2024-11-11 19:34:04,167 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-11 19:34:04,167 - [33mPress CTRL+C to quit[0m
+2024-11-11 19:34:04,171 -  * Restarting with stat
+2024-11-11 19:34:05,808 -  * Debugger is active!
+2024-11-11 19:34:05,832 -  * Debugger PIN: 588-383-424
+2024-11-11 19:34:17,778 - 127.0.0.1 - - [11/Nov/2024 19:34:17] "GET / HTTP/1.1" 200 -
+2024-11-11 19:34:17,897 - 127.0.0.1 - - [11/Nov/2024 19:34:17] "GET /static/script.js HTTP/1.1" 200 -
+2024-11-11 19:34:17,899 - 127.0.0.1 - - [11/Nov/2024 19:34:17] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-11 19:34:37,007 - User input: •Ÿ‰ª, Translated: Fukuoka, Weather: ”–‚¢‰_, Temp: 17.03, Advice: °‚ê‚Å•—‚ª‚È‚¯‚ê‚ÎƒJ[ƒfƒBƒKƒ“‚ÅOK‚Å‚·‚ªA•—‚ª‚ ‚éê‡‚ÍƒWƒƒƒPƒbƒg‚â”–è‚ÌƒR[ƒg‚ğ’…—p‚µ‚Ä‚­‚¾‚³‚¢B
+2024-11-11 19:34:37,008 - 127.0.0.1 - - [11/Nov/2024 19:34:37] "POST /api/weather HTTP/1.1" 200 -
+2024-11-11 19:34:37,059 - 127.0.0.1 - - [11/Nov/2024 19:34:37] "[33mGET /undefined HTTP/1.1[0m" 404 -
+2024-11-11 19:35:47,949 - 127.0.0.1 - - [11/Nov/2024 19:35:47] "GET / HTTP/1.1" 200 -
+2024-11-11 19:35:48,037 - 127.0.0.1 - - [11/Nov/2024 19:35:48] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-11 19:35:48,037 - 127.0.0.1 - - [11/Nov/2024 19:35:48] "GET /static/script.js HTTP/1.1" 200 -
+2024-11-11 19:35:52,045 - User input: •Ÿ‰ª, Translated: Fukuoka, Weather: ”–‚¢‰_, Temp: 17.03, Advice: °‚ê‚Å•—‚ª‚È‚¯‚ê‚ÎƒJ[ƒfƒBƒKƒ“‚ÅOK‚Å‚·‚ªA•—‚ª‚ ‚éê‡‚ÍƒWƒƒƒPƒbƒg‚â”–è‚ÌƒR[ƒg‚ğ’…—p‚µ‚Ä‚­‚¾‚³‚¢B
+2024-11-11 19:35:52,046 - 127.0.0.1 - - [11/Nov/2024 19:35:52] "POST /api/weather HTTP/1.1" 200 -
+2024-11-11 19:35:55,436 - User input: ²‰ê, Translated: Saga, Weather: ”–‚¢‰_, Temp: 17.9, Advice: °‚ê‚Å•—‚ª‚È‚¯‚ê‚ÎƒJ[ƒfƒBƒKƒ“‚ÅOK‚Å‚·‚ªA•—‚ª‚ ‚éê‡‚ÍƒWƒƒƒPƒbƒg‚â”–è‚ÌƒR[ƒg‚ğ’…—p‚µ‚Ä‚­‚¾‚³‚¢B
+2024-11-11 19:35:55,437 - 127.0.0.1 - - [11/Nov/2024 19:35:55] "POST /api/weather HTTP/1.1" 200 -
+2024-11-11 19:36:14,642 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ƒhƒLƒ…ƒƒ“ƒg\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
+2024-11-11 19:36:14,826 -  * Restarting with stat
