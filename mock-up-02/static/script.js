@@ -2,30 +2,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatForm = document.getElementById('chat-form');
     const userInput = document.getElementById('user-input');
     const chatMessages = document.getElementById('chat-messages');
-    const clearButton=document.getElementById('ClearChat')
-    /**
-     * Add event handler to clear button
-     * @author yutadd
-     */
-    clearButton.addEventListener('onclick', () => {
+    const clearButton = document.getElementById('ClearChat');
+
+    clearButton.addEventListener('click', () => {
         chatMessages.innerHTML = '';
         addMessage('こんにちは！都市名を入力して\n天気とおすすめの服装を確認してください！', 'bot');
     });
-    /**
-     * Hide clear button when input field is focused
-     * @author yutadd
-     */
+
     userInput.addEventListener('focus', () => {
         clearButton.classList.add('hidden');
         userInput.focus();
     });
-    /**
-     * Show clear button when input loses focus
-     * @author yutadd
-     */
+
     userInput.addEventListener('blur', () => {
         clearButton.classList.remove('hidden');
     });
+
     chatForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const city = userInput.value.trim();
