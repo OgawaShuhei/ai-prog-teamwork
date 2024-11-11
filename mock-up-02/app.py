@@ -1,13 +1,13 @@
 from flask import Flask, render_template, request, jsonify
 import requests
-from google.cloud import translate_v2 as translate
+from googletrans import Translator
 
 app = Flask(__name__)
 
 API_KEY = '1c33c613c2357110a08a8964f4aa621f'  # ここにOpenWeatherMapのAPIキーを入力
 
-# Google Cloud Translation APIクライアントの初期化
-translate_client = translate.Client()
+# Googletrans Translatorの初期化
+translator = Translator()
 
 @app.route('/')
 def index():
@@ -20,7 +20,10 @@ def get_weather():
     if not city:
         return jsonify({'error': '都市名が指定されていません。'}), 400
 
-    url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric&lang=ja'
+    # 日本語の都市名を英語に翻訳
+    translated_city = translator.translate(city, dest='en').text
+
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={translated_city}&appid={API_KEY}&units=metric&lang=ja'
     response = requests.get(url)
     if response.status_code == 200:
         weather_data = response.json()
@@ -40,8 +43,8 @@ def translate_text():
         return jsonify({'error': '翻訳するテキストまたはターゲット言語が指定されていません。'}), 400
 
     # 翻訳を実行
-    result = translate_client.translate(text, target_language=target_language)
-    return jsonify({'translatedText': result['translatedText']})
+    result = translator.translate(text, dest=target_language)
+    return jsonify({'translatedText': result.text})
 
 def get_clothing_advice(temp):
     if temp <= 0.0:
