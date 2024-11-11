@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request, jsonify
 import requests
+from google.cloud import translate_v2 as translate
 
 app = Flask(__name__)
 
 API_KEY = '1c33c613c2357110a08a8964f4aa621f'  # ここにOpenWeatherMapのAPIキーを入力
+
+# Google Cloud Translation APIクライアントの初期化
+translate_client = translate.Client()
 
 @app.route('/')
 def index():
@@ -26,6 +30,18 @@ def get_weather():
         return jsonify({'weather': weather, 'temp': temp, 'advice': advice})
     else:
         return jsonify({'error': '都市が見つかりませんでした。'}), 404
+
+@app.route('/api/translate', methods=['POST'])
+def translate_text():
+    data = request.json
+    text = data.get('text')
+    target_language = data.get('target_language')
+    if not text or not target_language:
+        return jsonify({'error': '翻訳するテキストまたはターゲット言語が指定されていません。'}), 400
+
+    # 翻訳を実行
+    result = translate_client.translate(text, target_language=target_language)
+    return jsonify({'translatedText': result['translatedText']})
 
 def get_clothing_advice(temp):
     if temp <= 0.0:
