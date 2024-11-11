@@ -55,3 +55,22 @@
 2024-11-11 19:28:57,987 -  * Debugger is active!
 2024-11-11 19:28:58,024 -  * Debugger PIN: 588-383-424
 2024-11-11 19:29:41,226 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ドキュメント\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
+2024-11-11 19:29:44,005 -  * Debugger is active!
+2024-11-11 19:29:44,016 -  * Debugger PIN: 588-383-424
+2024-11-11 19:30:07,260 - User input: 福岡, Translated: Fukuoka, Weather: 薄い雲, Temp: 17.84, Advice: {'advice': '晴れで風がなければカーディガンでOKですが、風がある場合はジャケットや薄手のコートを着用してください。', 'image_url': 'https://image.veryweb.jp/wp-content/uploads/2023/11/00-1.jpg'}
+2024-11-11 19:30:07,266 - 127.0.0.1 - - [11/Nov/2024 19:30:07] "POST /api/weather HTTP/1.1" 200 -
+2024-11-11 19:30:31,463 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ドキュメント\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
+2024-11-11 19:30:35,181 -  * Debugger is active!
+2024-11-11 19:30:35,191 -  * Debugger PIN: 588-383-424
+2024-11-11 19:30:38,515 - User input: 福岡, Translated: Fukuoka, Weather: 薄い雲, Temp: 17.84, Advice: {'advice': '晴れで風がなければカーディガンでOKですが、風がある場合はジャケットや薄手のコートを着用してください。', 'image_url': 'https://image.veryweb.jp/wp-content/uploads/2023/11/00-1.jpg'}
+2024-11-11 19:30:38,517 - 127.0.0.1 - - [11/Nov/2024 19:30:38] "POST /api/weather HTTP/1.1" 200 -
+2024-11-11 19:30:43,321 - User input: 佐賀, Translated: Saga, Weather: 晴天, Temp: 17.34, Advice: {'advice': '晴れで風がなければカーディガンでOKですが、風がある場合はジャケットや薄手のコートを着用してください。', 'image_url': 'https://image.veryweb.jp/wp-content/uploads/2023/11/00-1.jpg'}
+2024-11-11 19:30:43,322 - 127.0.0.1 - - [11/Nov/2024 19:30:43] "POST /api/weather HTTP/1.1" 200 -
+2024-11-11 19:32:07,781 - User input: 福岡, Translated: Fukuoka, Weather: 薄い雲, Temp: 17.84, Advice: {'advice': '晴れで風がなければカーディガンでOKですが、風がある場合はジャケットや薄手のコートを着用してください。', 'image_url': 'https://image.veryweb.jp/wp-content/uploads/2023/11/00-1.jpg'}
+2024-11-11 19:32:07,783 - 127.0.0.1 - - [11/Nov/2024 19:32:07] "POST /api/weather HTTP/1.1" 200 -
+2024-11-11 19:33:03,052 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ドキュメント\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
+2024-11-11 19:33:05,860 -  * Debugger is active!
+2024-11-11 19:33:05,871 -  * Debugger PIN: 588-383-424
+2024-11-11 19:33:10,517 - User input: 佐賀, Translated: Saga, Weather: 晴天, Temp: 17.34, Advice: {'advice': '晴れで風がなければカーディガンでOKですが、風がある場合はジャケットや薄手のコートを着用してください。'}
+2024-11-11 19:33:10,517 - 127.0.0.1 - - [11/Nov/2024 19:33:10] "POST /api/weather HTTP/1.1" 200 -
+2024-11-11 19:33:36,684 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ドキュメント\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
