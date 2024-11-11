@@ -1,3 +1,4 @@
+import logging
 from flask import Flask, render_template, request, jsonify
 import requests
 from googletrans import Translator
@@ -8,6 +9,9 @@ API_KEY = '1c33c613c2357110a08a8964f4aa621f'  # ここにOpenWeatherMapのAPIキ
 
 # Googletrans Translatorの初期化
 translator = Translator()
+
+# ログの設定
+logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s - %(message)s')
 
 @app.route('/')
 def index():
@@ -30,8 +34,13 @@ def get_weather():
         weather = weather_data['weather'][0]['description']
         temp = weather_data['main']['temp']
         advice = get_clothing_advice(temp)
+        
+        # ログに記録
+        logging.info(f"User input: {city}, Translated: {translated_city}, Weather: {weather}, Temp: {temp}, Advice: {advice}")
+        
         return jsonify({'weather': weather, 'temp': temp, 'advice': advice})
     else:
+        logging.error(f"City not found: {city}")
         return jsonify({'error': '都市が見つかりませんでした。'}), 404
 
 @app.route('/api/translate', methods=['POST'])
@@ -44,6 +53,10 @@ def translate_text():
 
     # 翻訳を実行
     result = translator.translate(text, dest=target_language)
+    
+    # ログに記録
+    logging.info(f"Text: {text}, Translated to {target_language}: {result.text}")
+    
     return jsonify({'translatedText': result.text})
 
 def get_clothing_advice(temp):
