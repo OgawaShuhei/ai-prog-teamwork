@@ -80,7 +80,16 @@ h1 {
     background-color: #007bff;
     color: white;
 }
+/**
+* devide show or hide by this css
+*/
+#ClearChat {
+    display: block;
+}
 
+#ClearChat.hidden {
+    display: none;
+}
 .chat-input {
     padding: 20px;
     border-top: 1px solid #eee;
