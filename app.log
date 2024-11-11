@@ -74,3 +74,5 @@
 2024-11-11 19:33:10,517 - User input: 佐賀, Translated: Saga, Weather: 晴天, Temp: 17.34, Advice: {'advice': '晴れで風がなければカーディガンでOKですが、風がある場合はジャケットや薄手のコートを着用してください。'}
 2024-11-11 19:33:10,517 - 127.0.0.1 - - [11/Nov/2024 19:33:10] "POST /api/weather HTTP/1.1" 200 -
 2024-11-11 19:33:36,684 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ドキュメント\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
+2024-11-11 19:33:39,475 -  * Debugger is active!
+2024-11-11 19:33:39,484 -  * Debugger PIN: 588-383-424

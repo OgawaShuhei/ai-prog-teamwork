@@ -60,16 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.error) {
                 addMessage(data.error, 'bot');
             } else {
-                const message = `${city}の天気は${data.weather}で、気温は${data.temp}℃です。${data.advice.advice}`;
+                const message = `${city}の天気は${data.weather}で、気温は${data.temp}℃です。${data.advice}`;
                 addMessage(message, 'bot');
-
-                // 画像を表示
-                const image = document.createElement('img');
-                image.src = data.advice.image_url;
-                image.alt = '服装のサンプル画像';
-                image.style.maxWidth = '100%';
-                chatMessages.appendChild(image);
-                scrollToBottom();
             }
         })
         .catch(error => {
