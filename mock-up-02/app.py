@@ -61,23 +61,50 @@ def translate_text():
 
 def get_clothing_advice(temp):
     if temp <= 0.0:
-        return "非常に寒いです。モフモフのコートやダウンジャケット、マフラー、手袋を着用してください。"
+        return {
+            "advice": "非常に寒いです。モフモフのコートやダウンジャケット、マフラー、手袋を着用してください。",
+            "image_url": "https://example.com/images/very_cold.png"
+        }
     elif 0.1 <= temp <= 5.0:
-        return "寒いです。ダウンコートやジャケット、マフラー、手袋を着用してください。"
+        return {
+            "advice": "寒いです。ダウンコートやジャケット、マフラー、手袋を着用してください。",
+            "image_url": "https://example.com/images/cold.png"
+        }
     elif 5.1 <= temp <= 8.0:
-        return "少し寒いです。ジャケットやコート、マフラー、手袋を着用してください。"
+        return {
+            "advice": "少し寒いです。ジャケットやコート、マフラー、手袋を着用してください。",
+            "image_url": "https://example.com/images/slightly_cold.png"
+        }
     elif 8.1 <= temp <= 13.0:
-        return "肌寒いです。ジャケットやコートを着用してください。"
+        return {
+            "advice": "肌寒いです。ジャケットやコートを着用してください。",
+            "image_url": "https://example.com/images/chilly.png"
+        }
     elif 13.1 <= temp <= 16.0:
-        return "晴れで無風なら軽い羽織り物でOKですが、風がある場合はジャケットやコートを着用してください。"
+        return {
+            "advice": "晴れで無風なら軽い羽織り物でOKですが、風がある場合はジャケットやコートを着用してください。",
+            "image_url": "https://example.com/images/mild.png"
+        }
     elif 16.1 <= temp <= 19.0:
-        return "晴れで風がなければカーディガンでOKですが、風がある場合はジャケットや薄手のコートを着用してください。"
+        return {
+            "advice": "晴れで風がなければカーディガンでOKですが、風がある場合はジャケットや薄手のコートを着用してください。",
+            "image_url": "https://example.com/images/comfortable.png"
+        }
     elif 19.1 <= temp <= 22.0:
-        return "快適な気温です。晴れで風がなければ上着なしでOKですが、長袖の服が良いでしょう。"
+        return {
+            "advice": "快適な気温です。晴れで風がなければ上着なしでOKですが、長袖の服が良いでしょう。",
+            "image_url": "https://example.com/images/pleasant.png"
+        }
     elif 22.1 <= temp <= 24.0:
-        return "半袖で過ごせますが、薄いカーディガンがあると安心です。"
+        return {
+            "advice": "半袖で過ごせますが、薄いカーディガンがあると安心です。",
+            "image_url": "https://example.com/images/warm.png"
+        }
     else:
-        return "暑いです。半袖で過ごせます。"
+        return {
+            "advice": "暑いです。半袖で過ごせます。",
+            "image_url": "https://example.com/images/hot.png"
+        }
 
 if __name__ == '__main__':
     app.run(debug=True)

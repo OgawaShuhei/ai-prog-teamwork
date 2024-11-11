@@ -28,3 +28,7 @@
 2024-11-11 18:39:27,545 - 127.0.0.1 - - [11/Nov/2024 18:39:27] "POST /api/weather HTTP/1.1" 200 -
 2024-11-11 18:39:35,724 - User input: fukuoka, Translated: Fukuoka, Weather: ”–‚¢‰_, Temp: 17.94, Advice: °‚ê‚Å•—‚ª‚È‚¯‚ê‚ÎƒJ[ƒfƒBƒKƒ“‚ÅOK‚Å‚·‚ªA•—‚ª‚ ‚éê‡‚ÍƒWƒƒƒPƒbƒg‚â”–è‚ÌƒR[ƒg‚ğ’…—p‚µ‚Ä‚­‚¾‚³‚¢B
 2024-11-11 18:39:35,725 - 127.0.0.1 - - [11/Nov/2024 18:39:35] "POST /api/weather HTTP/1.1" 200 -
+2024-11-11 19:15:05,380 - 127.0.0.1 - - [11/Nov/2024 19:15:05] "GET / HTTP/1.1" 200 -
+2024-11-11 19:15:05,451 - 127.0.0.1 - - [11/Nov/2024 19:15:05] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-11 19:15:05,452 - 127.0.0.1 - - [11/Nov/2024 19:15:05] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2024-11-11 19:18:41,424 -  * Detected change in 'C:\\Users\\ruozh\\OneDrive\\ƒhƒLƒ…ƒƒ“ƒg\\new_git\\ai-prog-teamwork\\mock-up-02\\app.py', reloading
