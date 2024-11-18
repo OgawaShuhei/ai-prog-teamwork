@@ -12,6 +12,9 @@ body {
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -27,6 +30,8 @@ h1 {
 }
 
 .chat-container {
+    flex: 1;
+    max-width: 70%;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -121,4 +126,38 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#shortcut-list {
+    flex: 0 0 25%;
+    margin-left: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#shortcuts {
+    list-style-type: none;
+    padding: 0;
+}
+
+#shortcuts li {
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #fff;
+    transition: background-color 0.3s;
+}
+
+#shortcuts li:hover {
+    background-color: #e0e0e0;
 }

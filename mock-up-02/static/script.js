@@ -94,13 +94,17 @@ document.addEventListener('DOMContentLoaded', function() {
     function saveShortcut(city) {
         let savedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
         if (!savedShortcuts.includes(city)) {
+            if (savedShortcuts.length >= 3) {
+                savedShortcuts.shift(); // 先頭のショートカットを削除
+            }
             savedShortcuts.push(city);
             localStorage.setItem('shortcuts', JSON.stringify(savedShortcuts));
-            addShortcut(city);
+            loadShortcuts(); // ショートカットを再読み込み
         }
     }
 
     function loadShortcuts() {
+        shortcuts.innerHTML = ''; // 現在のショートカットをクリア
         const savedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
         savedShortcuts.forEach(city => addShortcut(city));
     }

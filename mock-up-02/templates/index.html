@@ -24,12 +24,8 @@
                     </div>
                 </div>
                 
+                <!-- Clearボタンを追加 -->
                 <button id="clearButton">クリア</button>
-
-                <div id="shortcut-list">
-                    <h4>登録された地域</h4>
-                    <ul id="shortcuts"></ul>
-                </div>
 
                 <div class="chat-input">
                     <form id="chat-form">
@@ -38,6 +34,12 @@
                     </form>
                 </div>
             </div>
+
+            <!-- 地域ショートカットリストを右隣に配置 -->
+            <aside id="shortcut-list">
+                <h4>登録された地域</h4>
+                <ul id="shortcuts"></ul>
+            </aside>
         </main>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
