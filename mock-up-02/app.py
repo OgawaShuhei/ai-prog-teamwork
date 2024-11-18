@@ -59,6 +59,12 @@ def translate_text():
     
     return jsonify({'translatedText': result.text})
 
+@app.route('/api/logs', methods=['GET'])
+def get_logs():
+    with open('app.log', 'r') as log_file:
+        logs = log_file.readlines()
+    return jsonify({'logs': logs})
+
 def get_clothing_advice(temp):
     if temp <= 0.0:
         return "非常に寒いです。モフモフのコートやダウンジャケット、マフラー、手袋を着用してください。"
