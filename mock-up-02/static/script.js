@@ -123,10 +123,26 @@ document.addEventListener('DOMContentLoaded', function() {
     function addShortcut(city) {
         const li = document.createElement('li');
         li.textContent = city;
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = '削除';
+        deleteButton.addEventListener('click', () => {
+            removeShortcut(city);
+        });
+
+        li.appendChild(deleteButton);
         li.addEventListener('click', () => {
             addMessage(city, 'user');
             fetchWeather(city);
         });
+
         shortcuts.appendChild(li);
+    }
+
+    function removeShortcut(city) {
+        let savedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+        savedShortcuts = savedShortcuts.filter(item => item !== city);
+        localStorage.setItem('shortcuts', JSON.stringify(savedShortcuts));
+        loadShortcuts(); // ショートカットを再読み込み
     }
 });
