@@ -2,15 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatForm = document.getElementById('chat-form');
     const userInput = document.getElementById('user-input');
     const chatMessages = document.getElementById('chat-messages');
-    const reloadButton = document.getElementById('reloadButton');
-
-    // ページロード時にメッセージを復元
-    loadMessages();
-
-    // リロードボタンをクリックしたときにページをリロード
-    reloadButton.addEventListener('click', () => {
-        location.reload();
-    });
 
     userInput.addEventListener('focus', () => {
         userInput.focus();
