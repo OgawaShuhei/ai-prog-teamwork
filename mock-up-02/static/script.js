@@ -2,9 +2,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatForm = document.getElementById('chat-form');
     const userInput = document.getElementById('user-input');
     const chatMessages = document.getElementById('chat-messages');
+    const clearButton = document.getElementById('clearButton');
 
-    userInput.addEventListener('focus', () => {
-        userInput.focus();
+    // ページロード時にメッセージを復元
+    loadMessages();
+
+    // クリアボタンをクリックしたときにメッセージを削除
+    clearButton.addEventListener('click', () => {
+        chatMessages.innerHTML = '';
+        fetch('/api/messages', { method: 'DELETE' })
+            .then(response => response.json())
+            .then(data => {
+                addMessage('メッセージが削除されました。', 'bot');
+            })
+            .catch(error => {
+                console.error('Error deleting messages:', error);
+                addMessage('メッセージの削除に失敗しました。', 'bot');
+            });
     });
 
     chatForm.addEventListener('submit', function(e) {
