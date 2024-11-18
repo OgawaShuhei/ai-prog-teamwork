@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     clearButton.addEventListener('click', () => {
         chatMessages.innerHTML = '';
-        localStorage.removeItem('chatMessages');
+        fetch('/api/messages', { method: 'DELETE' });
         addMessage('こんにちは！都市名を入力して\n天気とおすすめの服装を確認してください！', 'bot');
     });
 
@@ -49,9 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         chatMessages.appendChild(messageDiv);
         scrollToBottom();
-
-        // メッセージをローカルストレージに保存
-        saveMessages();
     }
 
     function fetchWeather(city) {
@@ -81,16 +78,14 @@ document.addEventListener('DOMContentLoaded', function() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    function saveMessages() {
-        const messages = chatMessages.innerHTML;
-        localStorage.setItem('chatMessages', messages);
-    }
-
     function loadMessages() {
-        const savedMessages = localStorage.getItem('chatMessages');
-        if (savedMessages) {
-            chatMessages.innerHTML = savedMessages;
-            scrollToBottom();
-        }
+        fetch('/api/messages')
+        .then(response => response.json())
+        .then(messages => {
+            messages.forEach(msg => addMessage(msg.message, msg.sender));
+        })
+        .catch(error => {
+            console.error('Error loading messages:', error);
+        });
     }
 });

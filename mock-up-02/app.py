@@ -1,9 +1,10 @@
 import os
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, session
 import requests
 from googletrans import Translator
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)  # セッションのための秘密鍵
 
 API_KEY = '1c33c613c2357110a08a8964f4aa621f'  # ここにOpenWeatherMapのAPIキーを入力
 
@@ -32,22 +33,19 @@ def get_weather():
         temp = weather_data['main']['temp']
         advice = get_clothing_advice(temp)
         
+        # メッセージをセッションに保存
+        message = f"{city}の天気は{weather}で、気温は{temp}℃です。{advice}"
+        if 'messages' not in session:
+            session['messages'] = []
+        session['messages'].append({'sender': 'bot', 'message': message})
+        
         return jsonify({'weather': weather, 'temp': temp, 'advice': advice})
     else:
         return jsonify({'error': '都市が見つかりませんでした。'}), 404
 
-@app.route('/api/translate', methods=['POST'])
-def translate_text():
-    data = request.json
-    text = data.get('text')
-    target_language = data.get('target_language')
-    if not text or not target_language:
-        return jsonify({'error': '翻訳するテキストまたはターゲット言語が指定されていません。'}), 400
-
-    # 翻訳を実行
-    result = translator.translate(text, dest=target_language)
-    
-    return jsonify({'translatedText': result.text})
+@app.route('/api/messages', methods=['GET'])
+def get_messages():
+    return jsonify(session.get('messages', []))
 
 def get_clothing_advice(temp):
     if temp <= 0.0:
