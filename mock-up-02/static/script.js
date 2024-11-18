@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatMessages = document.getElementById('chat-messages');
     const clearButton = document.getElementById('clearButton');
     const saveShortcutButton = document.getElementById('saveShortcutButton');
+    const reloadButton = document.getElementById('reloadButton');
     const shortcuts = document.getElementById('shortcuts');
 
     // ページロード時にメッセージを復元
@@ -33,6 +34,11 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             addMessage('ショートカットに登録する都市名を入力してください。', 'bot');
         }
+    });
+
+    // リロードボタンをクリックしたときにページをリロード
+    reloadButton.addEventListener('click', () => {
+        location.reload();
     });
 
     chatForm.addEventListener('submit', function(e) {
