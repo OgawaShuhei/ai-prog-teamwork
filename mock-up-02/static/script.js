@@ -3,9 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const userInput = document.getElementById('user-input');
     const chatMessages = document.getElementById('chat-messages');
     const clearButton = document.getElementById('clearButton');
+    const shortcuts = document.getElementById('shortcuts');
 
     // ページロード時にメッセージを復元
     loadMessages();
+    loadShortcuts();
 
     // クリアボタンをクリックしたときにメッセージを削除
     clearButton.addEventListener('click', () => {
@@ -28,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             addMessage(city, 'user');
             userInput.value = '';
             fetchWeather(city);
+            saveShortcut(city);
         }
     });
 
@@ -86,5 +89,29 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
             console.error('Error loading messages:', error);
         });
+    }
+
+    function saveShortcut(city) {
+        let savedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+        if (!savedShortcuts.includes(city)) {
+            savedShortcuts.push(city);
+            localStorage.setItem('shortcuts', JSON.stringify(savedShortcuts));
+            addShortcut(city);
+        }
+    }
+
+    function loadShortcuts() {
+        const savedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+        savedShortcuts.forEach(city => addShortcut(city));
+    }
+
+    function addShortcut(city) {
+        const li = document.createElement('li');
+        li.textContent = city;
+        li.addEventListener('click', () => {
+            addMessage(city, 'user');
+            fetchWeather(city);
+        });
+        shortcuts.appendChild(li);
     }
 });
