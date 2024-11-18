@@ -126,7 +126,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = '削除';
-        deleteButton.addEventListener('click', () => {
+        deleteButton.className = 'delete-btn';
+        deleteButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // イベントのバブリングを防止
             removeShortcut(city);
         });
 

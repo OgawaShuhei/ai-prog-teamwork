@@ -24,7 +24,8 @@
                     </div>
                 </div>
                 
-                
+                <!-- Clearボタンを追加 -->
+                <button id="clearButton">クリア</button>
 
                 <div class="chat-input">
                     <form id="chat-form">
@@ -33,21 +34,18 @@
                     </form>
                     <!-- ショートカット登録ボタンを追加 -->
                     <button id="saveShortcutButton">ショートカット登録</button>
-                    <!-- Clearボタンを追加 -->
-                <button id="clearButton">クリア</button>
                 </div>
             </div>
 
             <!-- 地域ショートカットリストを右隣に配置 -->
             <aside id="shortcut-list">
                 <h4>登録された地域</h4>
-                <ul id="shortcuts"></ul>
+                <ul id="shortcuts">
+                    <!-- 各ショートカットに削除ボタンを追加 -->
+                    <!-- 例: <li>東京 <button class="delete-btn">削除</button></li> -->
+                </ul>
             </aside>
         </main>
-        <p>
-            これはAIです。<br>
-            実際の天気をもとに各自で調整できるようにして下さい。
-        </p>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
