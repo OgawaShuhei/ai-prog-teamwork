@@ -9,8 +9,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     clearButton.addEventListener('click', () => {
         chatMessages.innerHTML = '';
-        fetch('/api/messages', { method: 'DELETE' });
-        addMessage('こんにちは！都市名を入力して\n天気とおすすめの服装を確認してください！', 'bot');
+        fetch('/api/messages', { method: 'DELETE' })
+            .then(response => response.json())
+            .then(data => {
+                addMessage('メッセージが削除されました。', 'bot');
+            })
+            .catch(error => {
+                console.error('Error deleting messages:', error);
+                addMessage('メッセージの削除に失敗しました。', 'bot');
+            });
     });
 
     userInput.addEventListener('focus', () => {

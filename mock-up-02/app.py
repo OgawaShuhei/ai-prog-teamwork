@@ -1,7 +1,7 @@
-import os
 from flask import Flask, render_template, request, jsonify, session
 import requests
 from googletrans import Translator
+import os
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)  # セッションのための秘密鍵
@@ -46,6 +46,11 @@ def get_weather():
 @app.route('/api/messages', methods=['GET'])
 def get_messages():
     return jsonify(session.get('messages', []))
+
+@app.route('/api/messages', methods=['DELETE'])
+def delete_messages():
+    session.pop('messages', None)
+    return jsonify({'status': 'success', 'message': 'メッセージが削除されました。'})
 
 def get_clothing_advice(temp):
     if temp <= 0.0:
