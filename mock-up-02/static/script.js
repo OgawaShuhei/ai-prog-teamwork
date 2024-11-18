@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    function addMessage(message, sender, imageUrl = null) {
+    function addMessage(message, sender) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${sender}-message`;
         
@@ -59,14 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         messageDiv.appendChild(avatar);
         messageDiv.appendChild(content);
-
-        if (imageUrl) {
-            const image = document.createElement('img');
-            image.src = imageUrl;
-            image.alt = 'Clothing suggestion';
-            image.style.maxWidth = '100px'; // 画像のサイズを調整
-            messageDiv.appendChild(image);
-        }
         
         chatMessages.appendChild(messageDiv);
         scrollToBottom();
@@ -86,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 addMessage(data.error, 'bot');
             } else {
                 const message = `${city}の天気は${data.weather}で、気温は${data.temp}℃です。${data.advice}`;
-                addMessage(message, 'bot', data.image_url);
+                addMessage(message, 'bot');
             }
         })
         .catch(error => {
