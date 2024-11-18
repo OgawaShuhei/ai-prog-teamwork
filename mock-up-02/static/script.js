@@ -2,31 +2,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatForm = document.getElementById('chat-form');
     const userInput = document.getElementById('user-input');
     const chatMessages = document.getElementById('chat-messages');
-    const clearButton = document.getElementById('ClearChat');
+    const reloadButton = document.getElementById('reloadButton');
 
     // ページロード時にメッセージを復元
     loadMessages();
 
-    clearButton.addEventListener('click', () => {
-        chatMessages.innerHTML = '';
-        fetch('/api/messages', { method: 'DELETE' })
-            .then(response => response.json())
-            .then(data => {
-                addMessage('メッセージが削除されました。', 'bot');
-            })
-            .catch(error => {
-                console.error('Error deleting messages:', error);
-                addMessage('メッセージの削除に失敗しました。', 'bot');
-            });
+    // リロードボタンをクリックしたときにページをリロード
+    reloadButton.addEventListener('click', () => {
+        location.reload();
     });
 
     userInput.addEventListener('focus', () => {
-        clearButton.classList.add('hidden');
         userInput.focus();
-    });
-
-    userInput.addEventListener('blur', () => {
-        clearButton.classList.remove('hidden');
     });
 
     chatForm.addEventListener('submit', function(e) {
