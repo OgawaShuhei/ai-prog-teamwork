@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const userInput = document.getElementById('user-input');
     const chatMessages = document.getElementById('chat-messages');
     const clearButton = document.getElementById('clearButton');
-    const saveShortcutButton = document.getElementById('saveShortcutButton');
     const shortcuts = document.getElementById('shortcuts');
 
     // ページロード時にメッセージを復元
@@ -24,17 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     });
 
-    // ショートカット登録ボタンをクリックしたときにショートカットを保存
-    saveShortcutButton.addEventListener('click', () => {
-        const city = userInput.value.trim();
-        if (city) {
-            saveShortcut(city);
-            addMessage(`${city}がショートカットに登録されました。`, 'bot');
-        } else {
-            addMessage('ショートカットに登録する都市名を入力してください。', 'bot');
-        }
-    });
-
     chatForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const city = userInput.value.trim();
@@ -42,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             addMessage(city, 'user');
             userInput.value = '';
             fetchWeather(city);
+            saveShortcut(city);
         }
     });
 
