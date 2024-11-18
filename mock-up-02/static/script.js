@@ -73,17 +73,4 @@ document.addEventListener('DOMContentLoaded', function() {
     function scrollToBottom() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
-
-    function fetchLogs() {
-        fetch('/api/logs')
-        .then(response => response.json())
-        .then(data => {
-            data.logs.forEach(log => {
-                addMessage(log, 'log');
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching logs:', error);
-        });
-    }
 });
