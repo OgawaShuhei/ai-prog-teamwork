@@ -153,4 +153,21 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('shortcuts', JSON.stringify(savedShortcuts));
         loadShortcuts(); // ショートカットを再読み込み
     }
+
+    // ハンバーガーメニューの制御を追加
+    const menuToggle = document.getElementById('menuToggle');
+    const menuContent = document.getElementById('menuContent');
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        menuContent.classList.toggle('active');
+    });
+
+    // メニュー外をクリックした時に閉じる
+    document.addEventListener('click', (e) => {
+        if (!menuContent.contains(e.target) && !menuToggle.contains(e.target)) {
+            menuToggle.classList.remove('active');
+            menuContent.classList.remove('active');
+        }
+    });
 });

@@ -22,6 +22,7 @@ body {
 header {
     text-align: center;
     margin-bottom: 30px;
+    position: relative;
 }
 
 h1 {
@@ -175,4 +176,66 @@ main {
 
 #shortcuts li button:hover {
     background-color: #d32f2f;
+}
+
+#clearButton {
+    background-color: #dc3545;
+}
+
+#clearButton:hover {
+    background-color: #c82333;
+}
+
+.menu-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+.menu-content {
+    position: absolute;
+    top: 0;
+    right: -300px;
+    width: 250px;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    padding: 60px 20px 20px;
+    transition: 0.4s;
+    z-index: 999;
+}
+
+.menu-content.active {
+    right: 0;
+}
+
+.menu-content button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+}
+
+/* ハンバーガーメニューが開いているときのアニメーション */
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
 }
