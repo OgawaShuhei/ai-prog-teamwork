@@ -106,6 +106,7 @@ h1, h3 {
     border: 1px solid #dee2e6;
     border-radius: 5px;
     overflow: hidden;
+    background-color: #7494c0;  /* LINEっぽい背景色 */
 }
 
 .chat-messages {
@@ -114,38 +115,62 @@ h1, h3 {
     padding: 20px;
 }
 
+/* メッセージのスタイル */
 .message {
     display: flex;
     margin-bottom: 15px;
+    align-items: flex-start;
 }
 
+/* ユーザーメッセージ（右側） */
+.user-message {
+    flex-direction: row-reverse;
+    margin-left: auto;
+    max-width: 70%;
+}
+
+.user-message .message-content {
+    background-color: #90EE90;  /* ユーザーメッセージの背景色 */
+    margin-right: 10px;
+    position: relative;
+    border-radius: 20px;
+    padding: 10px 15px;
+    color: #000;
+}
+
+/* ボットメッセージ（左側） */
+.bot-message {
+    margin-right: auto;
+    max-width: 70%;
+}
+
+.bot-message .message-content {
+    background-color: white;  /* ボットメッセージの背景色 */
+    margin-left: 10px;
+    position: relative;
+    border-radius: 20px;
+    padding: 10px 15px;
+    color: #000;
+}
+
+/* アバターのスタイル */
 .avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #007bff;
-    color: white;
+    background-color: #fff;  /* アバターの背景色 */
+    color: #333;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 10px;
-    flex-shrink: 0;
+    font-size: 12px;
+    border: 1px solid #dee2e6;
 }
 
-.user-message .avatar {
-    background-color: #28a745;
-}
-
-.message-content {
-    background-color: #f8f9fa;
-    padding: 10px;
-    border-radius: 10px;
-    max-width: 70%;
-}
-
-/* チャット入力エリアのスタイル */
+/* 入力エリアのスタイル */
 .chat-input {
-    padding: 20px;
+    padding: 15px;
+    background-color: #f5f5f5;  /* 入力エリアの背景色 */
     border-top: 1px solid #dee2e6;
 }
 
@@ -156,33 +181,47 @@ h1, h3 {
 
 #user-input {
     flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    background-color: white;
+    font-size: 14px;
+}
+
+#user-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
 }
 
 #chat-form button {
-    padding: 10px 20px;
+    padding: 8px 16px;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
+    font-size: 14px;
 }
 
 #chat-form button[type="submit"] {
     background-color: #007bff;
 }
 
-#chat-form button[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
 #saveShortcutButton {
-    background-color: #28a745;  /* 緑色 */
+    background-color: #28a745;
 }
 
-#saveShortcutButton:hover {
-    background-color: #218838;
+/* スクロールバーのカスタマイズ */
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
 }
 
 /* ショートカットリストのスタイル */
