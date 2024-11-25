@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const userInput = document.getElementById('user-input');
     const chatMessages = document.getElementById('chat-messages');
     const clearButton = document.getElementById('clearButton');
-    const saveShortcutButton = document.getElementById('saveShortcutButton');
+    const saveShortcutButton = document.querySelector('#chat-form #saveShortcutButton');
     const reloadButton = document.getElementById('reloadButton');
     const shortcuts = document.getElementById('shortcuts');
 
@@ -26,7 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ショートカット登録ボタンをクリックしたときにショートカットを保存
-    saveShortcutButton.addEventListener('click', () => {
+    saveShortcutButton.addEventListener('click', (e) => {
+        e.preventDefault(); // フォームの送信を防止
         const city = userInput.value.trim();
         if (city) {
             saveShortcut(city);
