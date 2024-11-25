@@ -163,15 +163,26 @@ h1, h3 {
 
 #chat-form button {
     padding: 10px 20px;
-    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-#chat-form button:hover {
+#chat-form button[type="submit"] {
+    background-color: #007bff;
+}
+
+#chat-form button[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+#saveShortcutButton {
+    background-color: #28a745;  /* 緑色 */
+}
+
+#saveShortcutButton:hover {
+    background-color: #218838;
 }
 
 /* ショートカットリストのスタイル */
