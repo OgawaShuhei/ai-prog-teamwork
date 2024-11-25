@@ -114,7 +114,7 @@ h1, h3 {
     cursor: pointer;
     border: 1px solid #dee2e6;
     transition: all 0.2s ease;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 #shortcuts li:hover {
@@ -152,33 +152,15 @@ h1, h3 {
 
 /* 削除ボタン */
 .delete-btn {
-    /* サイズと配置 */
-    padding: 8px 8px;
-    width: 40px;
-    min-width: 40px;
-    height: auto;
-    margin-left: 8px;
-
-    /* 文字のスタイル */
-    font-size: 14px;
-    font-weight: normal;
+    padding: 8px 4px;
     color: white;
-    text-align: center;
-    line-height: 1;
-    white-space: nowrap;
-
-    /* 背景と境界線 */
-    background-color: #dc3545;
     border: none;
     border-radius: 20px;
-
-    /* その他の装飾 */
     cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: none;
-    opacity: 1;
-
-    /* Flexbox設定 */
+    font-size: 14px;
+    background-color: #dc3545;
+    margin-left: 8px;
+    min-width: 40px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -221,13 +203,13 @@ h1, h3 {
     cursor: pointer;
     border: 1px solid #dee2e6;
     transition: all 0.2s ease;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 #shortcuts li span {
     flex-grow: 1;
     margin-right: 8px;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: bold;
     color: #333;
     white-space: nowrap;
@@ -409,7 +391,7 @@ h1, h3 {
     cursor: pointer;
     border: 1px solid #dee2e6;
     transition: all 0.2s ease;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 #shortcuts li:hover {
@@ -436,12 +418,16 @@ h1, h3 {
 #shortcuts li span {
     flex-grow: 1;
     margin-right: 8px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
 }
 
 /* メニュー内のボタン（クリアボタンとリロードボタン） */
 .menu-content button {
     display: block;
-    width: 100%;
+    /* width: 100%; */
     margin: 10px 0;
     padding: 12px;
     border: none;
@@ -450,7 +436,7 @@ h1, h3 {
     cursor: pointer;
     transition: background-color 0.2s ease;
     font-size: 14px;
-    background-color: #007bff;
+    /* background-color: #007bff; */
 }
 
 .menu-content button:hover {
@@ -458,11 +444,17 @@ h1, h3 {
 }
 
 #clearButton {
+    width: 100%;
     background-color: #dc3545;
 }
 
 #clearButton:hover {
     background-color: #c82333;
+}
+
+#reloadButton {
+    width: 100%;
+    background-color: #007bff;
 }
 
 /* 送信ボタン */
