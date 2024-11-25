@@ -1,4 +1,3 @@
-/* 既存のCSSを使用 */
 * {
     margin: 0;
     padding: 0;
@@ -85,9 +84,7 @@ h1 {
     background-color: #007bff;
     color: white;
 }
-/**
-* devide show or hide by this css
-*/
+
 #ClearChat {
     display: block;
 }
