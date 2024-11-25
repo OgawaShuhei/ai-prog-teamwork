@@ -129,13 +129,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function addShortcut(city) {
         const li = document.createElement('li');
-        li.textContent = city;
+        
+        const citySpan = document.createElement('span');
+        citySpan.textContent = city;
+        li.appendChild(citySpan);
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = '削除';
         deleteButton.className = 'delete-btn';
         deleteButton.addEventListener('click', (e) => {
-            e.stopPropagation(); // イベントのバブリングを防止
+            e.stopPropagation();
             removeShortcut(city);
         });
 
