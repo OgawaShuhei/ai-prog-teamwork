@@ -241,10 +241,9 @@ h1, h3 {
     overflow: hidden;
     background-color: #7494c0;  /* LINEっぽい背景色 */
     width: 100%;
-    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    height: 600px;
+    height: 750px;
 }
 
 .chat-messages {
