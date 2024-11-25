@@ -240,10 +240,11 @@ h1, h3 {
     border-radius: 5px;
     overflow: hidden;
     background-color: #7494c0;  /* LINEっぽい背景色 */
-    height: 75vh;  /* 縦幅の設定（必要に応じて調整） */
-    width: 120vh;  /* 横幅を100%に設定（必要に応じて調整） */
-    margin-left: auto;  /* 中央揃え */
-    margin-right: auto; /* 中央揃え */
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 600px;
 }
 
 .chat-messages {
@@ -292,16 +293,23 @@ h1, h3 {
 
 /* アバターのスタイル */
 .avatar {
-    width: 40px;
-    height: 40px;
+    width: 5vh;
+    height: 5vh;
     border-radius: 50%;
     background-color: #fff;  /* アバターの背景色 */
     color: #333;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 2vh;
     border: 1px solid #dee2e6;
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 50vh;
+    height: 50vh;
+    object-fit: cover;
 }
 
 /* 入力エリアのスタイル */
