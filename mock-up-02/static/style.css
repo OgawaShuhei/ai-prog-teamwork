@@ -259,7 +259,7 @@ h1, h3 {
     overflow: hidden;
     background-color: #7494c0;  /* LINEっぽい背景色 */
     height: 75vh;  /* 縦幅の設定（必要に応じて調整） */
-    width: 110vh;  /* 横幅を100%に設定（必要に応じて調整） */
+    width: 120vh;  /* 横幅を100%に設定（必要に応じて調整） */
     margin-left: auto;  /* 中央揃え */
     margin-right: auto; /* 中央揃え */
 }
