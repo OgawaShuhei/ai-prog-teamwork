@@ -17,6 +17,10 @@
                 <span></span>
             </div>
             <div class="menu-content" id="menuContent">
+                <div id="shortcut-list">
+                    <h4>登録された地域</h4>
+                    <ul id="shortcuts"></ul>
+                </div>
                 <button id="saveShortcutButton">ショートカット登録</button>
                 <button id="clearButton">クリア</button>
                 <button id="reloadButton">リロード</button>
@@ -42,14 +46,6 @@
                     </form>
                 </div>
             </div>
-
-            <!-- 地域ショートカットリストを右隣に配置 -->
-            <aside id="shortcut-list">
-                <h4>登録された地域</h4>
-                <ul id="shortcuts">
-                    <!-- 各ショートカットに削除ボタンを追加 -->
-                </ul>
-            </aside>
         </main>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>

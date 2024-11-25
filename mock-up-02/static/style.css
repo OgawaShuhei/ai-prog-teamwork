@@ -68,6 +68,7 @@ h1, h3 {
     padding: 80px 20px 20px;
     transition: 0.4s;
     z-index: 999;
+    overflow-y: auto;
 }
 
 .menu-content.active {
@@ -175,10 +176,15 @@ h1, h3 {
 
 /* ショートカットリストのスタイル */
 #shortcut-list {
-    margin-top: 20px;
-    padding: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
     background-color: #f8f9fa;
     border-radius: 5px;
+}
+
+#shortcut-list h4 {
+    margin: 0 0 10px 0;
+    color: #333;
 }
 
 #shortcuts {
@@ -191,20 +197,26 @@ h1, h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 8px;
     margin: 5px 0;
     background-color: white;
     border-radius: 5px;
     cursor: pointer;
+    border: 1px solid #dee2e6;
+}
+
+#shortcuts li:hover {
+    background-color: #f8f9fa;
 }
 
 .delete-btn {
-    padding: 5px 10px;
+    padding: 3px 8px;
     background-color: #dc3545;
     color: white;
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    font-size: 0.8em;
 }
 
 .delete-btn:hover {
