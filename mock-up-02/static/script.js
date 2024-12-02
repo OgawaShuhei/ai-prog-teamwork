@@ -121,17 +121,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // ショートカットを追加する関数
     function addShortcut(city) {
         const li = document.createElement('li');
-        li.textContent = city;
+        
+        // 都市名用のspan要素を作成
+        const citySpan = document.createElement('span');
+        citySpan.textContent = city;
+        li.appendChild(citySpan);
 
+        // 削除ボタンを作成
         const deleteButton = document.createElement('button');
         deleteButton.textContent = '削除';
         deleteButton.className = 'delete-btn';
+        
+        // 削除ボタンのクリックイベント
         deleteButton.addEventListener('click', (e) => {
-            e.stopPropagation(); // イベントのバブリングを防止
+            e.stopPropagation(); // クリックイベントの伝播を停止
             removeShortcut(city);
+            li.remove(); // この要素のみを削除
         });
 
         li.appendChild(deleteButton);
+
+        // 都市名クリック時の天気取得
         li.addEventListener('click', () => {
             addMessage(city, 'user');
             fetchWeather(city);
@@ -141,11 +151,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ショートカットを削除する関数
-    function removeShortcut(city) {
+    function removeShortcut(cityToRemove) {
         let savedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
-        savedShortcuts = savedShortcuts.filter(item => item !== city);
+        // 指定された都市のみを削除
+        savedShortcuts = savedShortcuts.filter(city => city !== cityToRemove);
         localStorage.setItem('shortcuts', JSON.stringify(savedShortcuts));
-        loadShortcuts(); // ショートカットを再読み込み
     }
 
     // ハンバーガーメニューの制御を追加
