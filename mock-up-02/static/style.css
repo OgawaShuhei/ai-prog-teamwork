@@ -120,46 +120,116 @@ h1, h3 {
 
 /* ボタンスタイル */
 .button-base {
-    padding: 8px 16px;
+    padding: 10px 20px;
     color: white;
     border: none;
-    border-radius: 20px;
+    border-radius: 25px;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.2s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+    position: relative;
+    overflow: hidden;
 }
 
+.button-base:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+}
+
+.button-base:active {
+    transform: translateY(1px);
+}
+
+/* 送信ボタン */
 #chat-form button[type="submit"] {
-    background-color: #007bff;
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    border: 2px solid #4CAF50;
 }
 
 #chat-form button[type="submit"]:hover {
-    background-color: #0056b3;
+    background: linear-gradient(45deg, #45a049, #4CAF50);
 }
 
+/* 保存ボタン */
 #saveShortcutButton {
-    background-color: #28a745;
+    background: linear-gradient(45deg, #2196F3, #1976D2);
+    border: 2px solid #2196F3;
 }
 
 #saveShortcutButton:hover {
-    background-color: #218838;
+    background: linear-gradient(45deg, #1976D2, #2196F3);
 }
 
+/* 削除ボタン */
 .delete-btn {
-    background-color: #dc3545;
+    background: linear-gradient(45deg, #FF5252, #F44336);
     margin-left: 8px;
     min-width: 40px;
-    padding: 8px 4px;
+    padding: 8px 12px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid #FF5252;
 }
 
-.delete-btn:hover { background-color: #c82333; }
-.delete-btn:active { transform: translateY(1px); }
-.delete-btn:disabled {
-    opacity: 0.6;
+.delete-btn:hover {
+    background: linear-gradient(45deg, #F44336, #FF5252);
+}
+
+/* クリアボタン - 赤色系 */
+#clearButton {
+    background: linear-gradient(45deg, #FF4444, #CC0000);
+    border: 2px solid #FF4444;
+    width: 100%;
+    margin: 10px 0;
+}
+
+#clearButton:hover {
+    background: linear-gradient(45deg, #CC0000, #FF4444);
+}
+
+/* リロードボタン - 水色系 */
+#reloadButton {
+    background: linear-gradient(45deg, #00B7FF, #0099CC);
+    border: 2px solid #00B7FF;
+    width: 100%;
+    margin: 10px 0;
+}
+
+#reloadButton:hover {
+    background: linear-gradient(45deg, #0099CC, #00B7FF);
+}
+
+/* 無効化されたボタン */
+.button-base:disabled {
+    opacity: 0.7;
     cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+    .button-base {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .button-base {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .delete-btn {
+        min-width: 30px;
+        padding: 6px 8px;
+    }
 }
 
 /* チャットコンテナ */
