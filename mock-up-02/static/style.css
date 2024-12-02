@@ -1,4 +1,4 @@
-/* ベースのスタイル */
+/* ベーススタイル */
 body {
     margin: 0;
     padding: 0;
@@ -9,9 +9,10 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    width: 95%;
 }
 
-/* ヘッダーのスタイル */
+/* ヘッダー */
 header {
     position: relative;
     padding: 20px;
@@ -24,7 +25,7 @@ h1, h3 {
     padding: 5px 0;
 }
 
-/* ハンバーガーメニューのトグルボタン */
+/* ハンバーガーメニュー */
 .menu-toggle {
     position: fixed;
     top: 20px;
@@ -48,24 +49,15 @@ h1, h3 {
     transition: all 0.3s ease-in-out;
 }
 
-/* ハンバーガーメニューが開いているときのアニメーション */
-.menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
+.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
 /* メニューコンテンツ */
 .menu-content {
     position: fixed;
     top: 0;
-    right: -300px;
+    right: -100%;
     width: 250px;
     height: 100vh;
     background-color: #f8f9fa;
@@ -76,11 +68,9 @@ h1, h3 {
     overflow-y: auto;
 }
 
-.menu-content.active {
-    right: 0;
-}
+.menu-content.active { right: 0; }
 
-/* メニュー内のショートカットリスト */
+/* ショートカットリスト */
 #shortcut-list {
     background-color: white;
     border-radius: 8px;
@@ -117,94 +107,7 @@ h1, h3 {
     font-size: 18px;
 }
 
-#shortcuts li:hover {
-    background-color: #e9ecef;
-}
-
-/* 共通のボタンスタイル */
-#chat-form button,
-.delete-btn {
-    padding: 8px 16px;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-/* 送信ボタン */
-#chat-form button[type="submit"] {
-    background-color: #007bff;
-}
-
-#chat-form button[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-/* ショートカット登録ボタン */
-#saveShortcutButton {
-    background-color: #28a745;
-}
-
-#saveShortcutButton:hover {
-    background-color: #218838;
-}
-
-/* 削除ボタン */
-.delete-btn {
-    padding: 8px 4px;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    background-color: #dc3545;
-    margin-left: 8px;
-    min-width: 40px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.delete-btn:hover {
-    background-color: #c82333;
-}
-
-.delete-btn:active {
-    transform: translateY(1px);
-}
-
-/* アクティブ時（クリック時）の効果 */
-.delete-btn:active {
-    transform: translateY(1px);
-}
-
-/* フォーカス時の効果 */
-.delete-btn:focus {
-    outline: none;
-    /* box-shadow: 0 0 0 3px rgba(220,53,69,0.3); */
-}
-
-/* 無効時のスタイル */
-.delete-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-/* ショートカットリストのアイテム */
-#shortcuts li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 12px;
-    margin: 5px 0;
-    background-color: #f8f9fa;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 1px solid #dee2e6;
-    transition: all 0.2s ease;
-    font-size: 18px;
-}
+#shortcuts li:hover { background-color: #e9ecef; }
 
 #shortcuts li span {
     flex-grow: 1;
@@ -215,87 +118,109 @@ h1, h3 {
     white-space: nowrap;
 }
 
-/* スクロールバーのカスタマイズ */
-.menu-content::-webkit-scrollbar {
-    width: 5px;
+/* ボタンスタイル */
+.button-base {
+    padding: 8px 16px;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
 }
 
-.menu-content::-webkit-scrollbar-track {
-    background: #f1f1f1;
+#chat-form button[type="submit"] {
+    background-color: #007bff;
 }
 
-.menu-content::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5px;
+#chat-form button[type="submit"]:hover {
+    background-color: #0056b3;
 }
 
-.menu-content::-webkit-scrollbar-thumb:hover {
-    background: #555;
+#saveShortcutButton {
+    background-color: #28a745;
 }
 
-/* チャットコンテナのスタイル */
+#saveShortcutButton:hover {
+    background-color: #218838;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    margin-left: 8px;
+    min-width: 40px;
+    padding: 8px 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-btn:hover { background-color: #c82333; }
+.delete-btn:active { transform: translateY(1px); }
+.delete-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* チャットコンテナ */
 .chat-container {
     margin-top: 20px;
     border: 1px solid #dee2e6;
     border-radius: 5px;
     overflow: hidden;
-    background-color: #7494c0;  /* LINEっぽい背景色 */
+    background-color: #7494c0;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    height: 750px;
+    height: calc(100vh - 150px);
+    min-height: 400px;
 }
 
 .chat-messages {
-    height: calc(100% - 100px);  /* チャットコンテナの高さから入力エリアの高さを引く */
+    height: calc(100% - 100px);
     overflow-y: auto;
     padding: 20px;
 }
 
-/* メッセージのスタイル */
+/* メッセージスタイル */
 .message {
     display: flex;
     margin-bottom: 15px;
     align-items: flex-start;
+    max-width: 85%;
 }
 
-/* ユーザーメッセージ（右側） */
 .user-message {
     flex-direction: row-reverse;
     margin-left: auto;
-    max-width: 70%;
+}
+
+.bot-message {
+    margin-right: auto;
+}
+
+.message-content {
+    border-radius: 20px;
+    padding: 10px 15px;
+    color: #000;
 }
 
 .user-message .message-content {
-    background-color: #90EE90;  /* ユーザーメッセージの背景色 */
+    background-color: #90EE90;
     margin-right: 10px;
-    position: relative;
-    border-radius: 20px;
-    padding: 10px 15px;
-    color: #000;
-}
-
-/* ボットメッセージ（左側） */
-.bot-message {
-    margin-right: auto;
-    max-width: 70%;
 }
 
 .bot-message .message-content {
-    background-color: white;  /* ボットメッセージの背景色 */
+    background-color: white;
     margin-left: 10px;
-    position: relative;
-    border-radius: 20px;
-    padding: 10px 15px;
-    color: #000;
 }
 
-/* アバターのスタイル */
+/* アバター */
 .avatar {
     width: 5vh;
     height: 5vh;
     border-radius: 50%;
-    background-color: #fff;  /* アバターの背景色 */
+    background-color: #fff;
     color: #333;
     display: flex;
     align-items: center;
@@ -311,10 +236,10 @@ h1, h3 {
     object-fit: cover;
 }
 
-/* 入力エリアのスタイル */
+/* 入力エリア */
 .chat-input {
     padding: 15px;
-    background-color: #f5f5f5;  /* 入力エリアの背景色 */
+    background-color: #f5f5f5;
     border-top: 1px solid #dee2e6;
 }
 
@@ -337,121 +262,37 @@ h1, h3 {
     box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
 }
 
-#chat-form button {
-    padding: 8px 16px;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-#chat-form button[type="submit"] {
-    background-color: #007bff;
-}
-
-#saveShortcutButton {
-    background-color: #28a745;
-}
-
-/* スクロールバーのカスタマイズ */
+/* カスタムスクロールバー */
+.menu-content::-webkit-scrollbar,
 .chat-messages::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 
+.menu-content::-webkit-scrollbar-track,
 .chat-messages::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.1);
+    background: #f1f1f1;
 }
 
+.menu-content::-webkit-scrollbar-thumb,
 .chat-messages::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.3);
-    border-radius: 3px;
-}
-
-/* ショートカットリストのスタイル */
-#shortcut-list {
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #f8f9fa;
+    background: #888;
     border-radius: 5px;
 }
 
-#shortcut-list h4 {
-    margin: 0 0 10px 0;
-    color: #333;
+.menu-content::-webkit-scrollbar-thumb:hover,
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
-#shortcuts {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#shortcuts li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 12px;
-    margin: 5px 0;
-    background-color: #f8f9fa;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 1px solid #dee2e6;
-    transition: all 0.2s ease;
-    font-size: 18px;
-}
-
-#shortcuts li:hover {
-    background-color: #f8f9fa;
-}
-
-.delete-btn {
-    padding: 4px 8px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 1;
-    margin-left: 8px;
-    white-space: nowrap;
-}
-
-.delete-btn:hover {
-    background-color: #c82333;
-}
-
-#shortcuts li span {
-    flex-grow: 1;
-    margin-right: 8px;
-    font-size: 28px;
-    font-weight: bold;
-    color: #333;
-    white-space: nowrap;
-}
-
-/* メニュー内のボタン（クリアボタンとリロードボタン） */
-.menu-content button {
-    display: block;
-    /* width: 100%; */
+/* メニューボタン */
+#clearButton,
+#reloadButton {
+    width: 100%;
     margin: 10px 0;
     padding: 12px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    font-size: 14px;
-    /* background-color: #007bff; */
-}
-
-.menu-content button:hover {
-    background-color: #b30000;
 }
 
 #clearButton {
-    width: 100%;
     background-color: #dc3545;
 }
 
@@ -460,53 +301,115 @@ h1, h3 {
 }
 
 #reloadButton {
-    width: 100%;
     background-color: #007bff;
 }
 
-/* 送信ボタン */
-#chat-form button[type="submit"] {
-    padding: 8px 16px;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    background-color: #007bff;
+/* レスポンシブデザインの修正 */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .menu-content {
+        width: 80%;
+        right: -100%;
+        padding: 50px 15px 15px;
+    }
+
+    .menu-content.active {
+        right: 0;
+    }
+
+    .chat-container {
+        height: calc(100vh - 120px);
+        margin-top: 10px;
+    }
+
+    .message {
+        max-width: 90%;
+    }
+
+    .message-content {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    #shortcuts li {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    #shortcuts li span {
+        font-size: 14px;
+    }
+
+    .button-base {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
 }
 
-#chat-form button[type="submit"]:hover {
-    background-color: #0056b3;
-}
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 5px;
+    }
 
-/* ショートカット登録ボタン */
-#saveShortcutButton {
-    padding: 8px 16px;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    background-color: #28a745;
-}
+    .menu-toggle {
+        top: 10px;
+        right: 10px;
+        width: 25px;
+        height: 25px;
+    }
 
-#saveShortcutButton:hover {
-    background-color: #218838;
-}
+    .menu-content {
+        width: 100%;
+        right: -100%;
+        padding: 40px 10px 10px;
+    }
 
-/* 削除ボタン */
-.delete-btn {
-    padding: 8px 8px;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    background-color: #dc3545;
-    margin-left: 8px;
-    min-width: 48px;
-}
+    .chat-container {
+        height: calc(100vh - 100px);
+    }
 
-.delete-btn:hover {
-    background-color: #c82333;
+    .message {
+        max-width: 95%;
+    }
+
+    .message-content {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+
+    .avatar {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    #user-input {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .chat-input {
+        padding: 10px;
+    }
+
+    #shortcuts li {
+        font-size: 13px;
+        padding: 6px;
+    }
+
+    .delete-btn {
+        min-width: 30px;
+        padding: 4px;
+        font-size: 12px;
+    }
 }

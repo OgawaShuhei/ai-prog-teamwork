@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const userInput = document.getElementById('user-input');
     const chatMessages = document.getElementById('chat-messages');
     const clearButton = document.getElementById('clearButton');
-    const saveShortcutButton = document.querySelector('#chat-form #saveShortcutButton');
+    const saveShortcutButton = document.getElementById('saveShortcutButton');
     const reloadButton = document.getElementById('reloadButton');
     const shortcuts = document.getElementById('shortcuts');
 
@@ -11,51 +11,17 @@ document.addEventListener('DOMContentLoaded', function() {
     loadMessages();
     loadShortcuts();
 
-    // クリアボタンをクリックしたときにメッセージを削除
-    clearButton.addEventListener('click', () => {
-        chatMessages.innerHTML = '';
-        fetch('/api/messages', { method: 'DELETE' })
-            .then(response => response.json())
-            .then(data => {
-                addMessage('メッセージが削除されました。', 'bot');
-            })
-            .catch(error => {
-                console.error('Error deleting messages:', error);
-                addMessage('メッセージの削除に失敗しました。', 'bot');
-            });
-    });
+    // イベントリスナーの設定
+    clearButton.addEventListener('click', clearMessages);
+    saveShortcutButton.addEventListener('click', saveShortcut);
+    reloadButton.addEventListener('click', () => location.reload());
+    chatForm.addEventListener('submit', handleChatSubmit);
 
-    // ショートカット登録ボタンをクリックしたときにショートカットを保存
-    saveShortcutButton.addEventListener('click', (e) => {
-        e.preventDefault(); // フォームの送信を防止
-        const city = userInput.value.trim();
-        if (city) {
-            saveShortcut(city);
-            addMessage(`${city}がショートカットに登録されました。`, 'bot');
-        } else {
-            addMessage('ショートカットに登録する都市名を入力してください。', 'bot');
-        }
-    });
-
-    // リロードボタンをクリックしたときにページをリロード
-    reloadButton.addEventListener('click', () => {
-        location.reload();
-    });
-
-    chatForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const city = userInput.value.trim();
-        if (city) {
-            addMessage(city, 'user');
-            userInput.value = '';
-            fetchWeather(city);
-        }
-    });
-
+    // メッセージを追加する関数
     function addMessage(message, sender) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${sender}-message`;
-        
+
         const avatar = document.createElement('div');
         avatar.className = 'avatar';
         avatar.textContent = sender === 'user' ? 'You' : 'AI';
@@ -66,17 +32,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
         messageDiv.appendChild(avatar);
         messageDiv.appendChild(content);
-        
         chatMessages.appendChild(messageDiv);
         scrollToBottom();
     }
 
+    // メッセージをクリアする関数
+    function clearMessages() {
+        chatMessages.innerHTML = '';
+        fetch('/api/messages', { method: 'DELETE' })
+            .then(response => response.json())
+            .then(() => addMessage('メッセージが削除されました。', 'bot'))
+            .catch(error => {
+                console.error('Error deleting messages:', error);
+                addMessage('メッセージの削除に失敗しました。', 'bot');
+            });
+    }
+
+    // ショートカットを保存する関数
+    function saveShortcut(e) {
+        e.preventDefault(); // フォームの送信を防止
+        const city = userInput.value.trim();
+        if (city) {
+            addShortcut(city);
+            addMessage(`${city}がショートカットに登録されました。`, 'bot');
+            userInput.value = ''; // 入力フィールドをクリア
+        } else {
+            addMessage('ショートカットに登録する都市名を入力してください。', 'bot');
+        }
+    }
+
+    // チャットの送信を処理する関数
+    function handleChatSubmit(e) {
+        e.preventDefault();
+        const city = userInput.value.trim();
+        if (city) {
+            addMessage(city, 'user');
+            fetchWeather(city);
+            userInput.value = ''; // 入力フィールドをクリア
+        }
+    }
+
+    // 天気情報を取得する関数
     function fetchWeather(city) {
         fetch('/api/weather', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ city: city })
         })
         .then(response => response.json())
@@ -94,10 +94,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // スクロールを下に移動する関数
     function scrollToBottom() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
+    // メッセージをロードする関数
     function loadMessages() {
         fetch('/api/messages')
         .then(response => response.json())
@@ -109,24 +111,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function saveShortcut(city) {
-        let savedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
-        if (!savedShortcuts.includes(city)) {
-            if (savedShortcuts.length >= 3) {
-                savedShortcuts.shift(); // 先頭のショートカットを削除
-            }
-            savedShortcuts.push(city);
-            localStorage.setItem('shortcuts', JSON.stringify(savedShortcuts));
-            loadShortcuts(); // ショートカットを再読み込み
-        }
-    }
-
+    // ショートカットをロードする関数
     function loadShortcuts() {
         shortcuts.innerHTML = ''; // 現在のショートカットをクリア
         const savedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
         savedShortcuts.forEach(city => addShortcut(city));
     }
 
+    // ショートカットを追加する関数
     function addShortcut(city) {
         const li = document.createElement('li');
         li.textContent = city;
@@ -148,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
         shortcuts.appendChild(li);
     }
 
+    // ショートカットを削除する関数
     function removeShortcut(city) {
         let savedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
         savedShortcuts = savedShortcuts.filter(item => item !== city);
