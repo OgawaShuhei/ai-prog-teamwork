@@ -33,7 +33,11 @@
                         <div class="message-content">
                             こんにちは！都市名を入力して<br>
                             天気とおすすめの服装を確認してください！<br>
-                            一部の都市では、天気予報が取得できない場合があります。
+                            一部の都市では、天気予報が取得できない場合があります。<br>
+                            おすすめの服装を男女で分けて表示されるため、<br>
+                            男性はスライドボタンが青の状態<br>
+                            女性はスライドボタンが赤の状態<br>
+                            にすると、おすすめの服装が表示されます。
                         </div>
                     </div>
                 </div>
@@ -41,6 +45,13 @@
                 <div class="chat-input">
                     <form id="chat-form">
                         <input type="text" id="user-input" placeholder="都市名を入力..." autocomplete="off">
+                        <div class="gender-toggle">
+                            <input type="checkbox" id="genderToggle" class="toggle-input">
+                            <label for="genderToggle" class="toggle-label">
+                                <span class="male">男性</span>
+                                <span class="female">女性</span>
+                            </label>
+                        </div>
                         <button type="submit">送信</button>
                         <button type="button" id="saveShortcutButton">登録</button>
                     </form>

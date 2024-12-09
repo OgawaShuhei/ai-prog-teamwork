@@ -267,29 +267,78 @@ h1, h3 {
     max-width: 85%;
 }
 
+.message-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 20px;
+    position: relative;
+}
+
+/* ユーザーメッセージのスタイル */
 .user-message {
     flex-direction: row-reverse;
     margin-left: auto;
 }
 
-.bot-message {
-    margin-right: auto;
-}
-
-.message-content {
-    border-radius: 20px;
-    padding: 10px 15px;
-    color: #000;
-}
-
 .user-message .message-content {
     background-color: #90EE90;
     margin-right: 10px;
+    border-top-right-radius: 5px;
+}
+
+.user-message .message-content::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 10px;
+    border: 10px solid transparent;
+    border-left-color: #90EE90;
+    border-right: 0;
+}
+
+/* ボットメッセージのスタイル */
+.bot-message {
+    margin-right: auto;
 }
 
 .bot-message .message-content {
     background-color: white;
     margin-left: 10px;
+    border-top-left-radius: 5px;
+}
+
+.bot-message .message-content::after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    border: 10px solid transparent;
+    border-right-color: white;
+    border-left: 0;
+}
+
+/* アバターのスタイル */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border: 1px solid #dee2e6;
+    flex-shrink: 0;
+}
+
+/* 画像のスタイル */
+.clothing-image {
+    max-width: 200px;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
 /* アバター */
@@ -431,6 +480,10 @@ h1, h3 {
         padding: 6px 12px;
         font-size: 12px;
     }
+
+    .clothing-image {
+        max-width: 150px;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -489,4 +542,86 @@ h1, h3 {
         padding: 4px;
         font-size: 12px;
     }
+
+    .clothing-image {
+        max-width: 120px;
+    }
+}
+
+/* 性別切り替えボタン */
+.gender-toggle {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.toggle-input {
+    display: none;
+}
+
+.toggle-label {
+    display: inline-block;
+    position: relative;
+    width: 100px;
+    height: 34px;
+    background: #4169e1;
+    border-radius: 17px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.toggle-label:before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    background: #fff;
+    transition: 0.3s;
+    z-index: 2;
+}
+
+.toggle-input:checked + .toggle-label {
+    background: #ff69b4;
+}
+
+.toggle-input:checked + .toggle-label:before {
+    transform: translateX(66px);
+}
+
+.toggle-label .male,
+.toggle-label .female {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    z-index: 1;
+}
+
+.toggle-label .male {
+    left: 10px;
+}
+
+.toggle-label .female {
+    right: 10px;
+}
+
+/* アクティブな状態をより明確にする */
+.toggle-input:not(:checked) + .toggle-label .male {
+    opacity: 1;
+}
+
+.toggle-input:not(:checked) + .toggle-label .female {
+    opacity: 0.5;
+}
+
+.toggle-input:checked + .toggle-label .male {
+    opacity: 0.5;
+}
+
+.toggle-input:checked + .toggle-label .female {
+    opacity: 1;
 }

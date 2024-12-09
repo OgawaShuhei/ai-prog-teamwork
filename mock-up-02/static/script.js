@@ -38,13 +38,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // メッセージをクリアする関数
     function clearMessages() {
+        // 最初のボットメッセージを保存
+        const initialBotMessage = chatMessages.querySelector('.bot-message');
+        
+        // チャットメッセージをクリア
         chatMessages.innerHTML = '';
+        
+        // 最初のボットメッセージを復元
+        if (initialBotMessage) {
+            chatMessages.appendChild(initialBotMessage.cloneNode(true));
+        }
+        
+        // サーバー側のメッセージ履歴をクリア
         fetch('/api/messages', { method: 'DELETE' })
             .then(response => response.json())
-            .then(() => addMessage('メッセージが削除されました。', 'bot'))
+            .then(() => addMessage('チャット履歴が削除されました。', 'bot'))
             .catch(error => {
                 console.error('Error deleting messages:', error);
-                addMessage('メッセージの削除に失敗しました。', 'bot');
+                addMessage('チャット履歴の削除に失敗しました。', 'bot');
             });
     }
 
@@ -72,26 +83,130 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // 服装画像のパスを定義
+    const CLOTHING_IMAGES = {
+        male: {
+            sunny: {
+                hot: '/static/images/summer/male_tshirt.png',
+                warm: '/static/images/spring/male_shirt.png',
+                cold: '/static/images/autumn/male_coat.png',
+                freezing: '/static/images/winter/male_winter_coat.png'
+            },
+            rain: {
+                hot: '/static/images/summer/male_tshirt_umbrella.png',
+                warm: '/static/images/spring/male_shirt_umbrella.png',
+                cold: '/static/images/autumn/male_coat_umbrella.png',
+                freezing: '/static/images/winter/male_winter_coat_umbrella.png'
+            },
+            cloudy: {
+                hot: '/static/images/summer/male_tshirt.png',
+                warm: '/static/images/spring/male_shirt.png',
+                cold: '/static/images/autumn/male_coat.png',
+                freezing: '/static/images/winter/male_winter_coat.png'
+            },
+            snow: {
+                cold: '/static/images/winter/male_heavy_winter_coat.png',
+                freezing: '/static/images/winter/male_warmest_coat.png'
+            }
+        },
+        female: {
+            sunny: {
+                hot: '/static/images/summer/female_dress.png',
+                warm: '/static/images/spring/female_blouse.png',
+                cold: '/static/images/autumn/female_coat.png',
+                freezing: '/static/images/winter/female_winter_coat.png'
+            },
+            rain: {
+                hot: '/static/images/summer/female_dress_umbrella.png',
+                warm: '/static/images/spring/female_blouse_umbrella.png',
+                cold: '/static/images/autumn/female_coat_umbrella.png',
+                freezing: '/static/images/winter/female_winter_coat_umbrella.png'
+            },
+            cloudy: {
+                hot: '/static/images/summer/female_dress.png',
+                warm: '/static/images/spring/female_blouse.png',
+                cold: '/static/images/autumn/female_coat.png',
+                freezing: '/static/images/winter/female_winter_coat.png'
+            },
+            snow: {
+                cold: '/static/images/winter/female_heavy_winter_coat.png',
+                freezing: '/static/images/winter/female_warmest_coat.png'
+            }
+        }
+    };
+
     // 天気情報を取得する関数
     function fetchWeather(city) {
+        const isFemale = document.getElementById('genderToggle').checked;
+        
         fetch('/api/weather', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ city: city })
+            body: JSON.stringify({ 
+                city: city,
+                isFemale: isFemale 
+            })
         })
         .then(response => response.json())
         .then(data => {
             if (data.error) {
                 addMessage(data.error, 'bot');
             } else {
-                const message = `${city}の天気は${data.weather}で、気温は${data.temp}℃です。${data.advice}`;
-                addMessage(message, 'bot');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message bot-message';
+
+                const avatar = document.createElement('div');
+                avatar.className = 'avatar';
+                avatar.textContent = 'AI';
+
+                const content = document.createElement('div');
+                content.className = 'message-content';
+
+                // テキストメッセージを追加
+                const textDiv = document.createElement('div');
+                textDiv.textContent = `${city}の天気は${data.weather}で、気温は${data.temp}℃です。${data.advice}`;
+                content.appendChild(textDiv);
+
+                // 画像パスを取得
+                const gender = isFemale ? 'female' : 'male';
+                const weather = getWeatherCategory(data.weather);
+                const tempRange = getTempCategory(parseInt(data.temp));
+                const imagePath = CLOTHING_IMAGES[gender][weather][tempRange];
+
+                // 画像を追加
+                const image = document.createElement('img');
+                image.src = imagePath;
+                image.alt = '推奨される服装';
+                image.className = 'clothing-image';
+                content.appendChild(image);
+
+                messageDiv.appendChild(avatar);
+                messageDiv.appendChild(content);
+                chatMessages.appendChild(messageDiv);
+                scrollToBottom();
             }
         })
         .catch(error => {
             console.error('Error fetching weather data:', error);
             addMessage('天気情報を取得できませんでした。後でもう一度お試しください。', 'bot');
         });
+    }
+
+    // 天候カテゴリを取得する関数
+    function getWeatherCategory(weather) {
+        if (weather.includes('雨')) return 'rain';
+        if (weather.includes('雪')) return 'snow';
+        if (weather.includes('曇')) return 'cloudy';
+        if (weather.includes('晴')) return 'sunny';
+        return 'sunny'; // デフォルト
+    }
+
+    // 気温カテゴリを取得する関数を修正
+    function getTempCategory(temp) {
+        if (temp >= 30) return 'hot';
+        if (temp >= 20) return 'warm';
+        if (temp >= 10) return 'cold';
+        return 'freezing';
     }
 
     // スクロールを下に移動する関数
@@ -136,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
         deleteButton.addEventListener('click', (e) => {
             e.stopPropagation(); // クリックイベントの伝播を停止
             removeShortcut(city);
-            li.remove(); // この要素のみを削除
+            li.remove();
         });
 
         li.appendChild(deleteButton);
@@ -148,12 +263,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         shortcuts.appendChild(li);
+
+        // ローカルストレージに保存
+        let savedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+        if (!savedShortcuts.includes(city)) {
+            savedShortcuts.push(city);
+            localStorage.setItem('shortcuts', JSON.stringify(savedShortcuts));
+        }
     }
 
     // ショートカットを削除する関数
     function removeShortcut(cityToRemove) {
         let savedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
-        // 指定された都市のみを削除
         savedShortcuts = savedShortcuts.filter(city => city !== cityToRemove);
         localStorage.setItem('shortcuts', JSON.stringify(savedShortcuts));
     }
