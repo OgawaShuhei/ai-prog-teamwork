@@ -87,48 +87,54 @@ document.addEventListener('DOMContentLoaded', function() {
     const CLOTHING_IMAGES = {
         male: {
             sunny: {
-                hot: '../img/male/sunny-hot.jpg',
-                warm: '../img/male/sunny-warm.jpg',
-                cold: '../img/male/sunny-cold.jpg',
-                freezing: '../img/male/sunny-freezing.jpg'
+                hot: '/static/img/male/sunny-hot.jpg',
+                warm: '/static/img/male/sunny-warm.jpg',
+                cold: '/static/img/male/sunny-cold.jpg',
+                freezing: '/static/img/male/sunny-freezing.jpg'
             },
             rain: {
-                hot: '../img/male/rain-hot.jpg',
-                warm: '../img/male/rain-warm.jpg',
-                cold: '../img/male/rain-cold.jpg',
-                freezing: '../img/male/rain-freezing.jpg'
+                hot: '/static/img/male/rain-hot.jpg',
+                warm: '/static/img/male/rain-warm.jpg',
+                cold: '/static/img/male/rain-cold.jpg',
+                freezing: '/static/img/male/rain-freezing.jpg'
             },
             cloudy: {
-                hot: '../img/male/cloud-hot.jpg',
-                warm: '../img/male/cloud-warm.jpg',
-                cold: '../img/male/cloud-cold.jpg'
+                hot: '/static/img/male/cloud-hot.jpg',
+                warm: '/static/img/male/cloud-warm.jpg',
+                cold: '/static/img/male/cloud-cold.jpg',
+                freezing: '/static/img/male/cloud-freezing.jpg'
             },
             snow: {
-                cold: '../img/male/snow-cold.jpg',
-                freezing: '../img/male/snow-freezing.jpg'
+                hot: '/static/img/male/snow-cold.jpg', // 実際にはありえない
+                warm: '/static/img/male/snow-cold.jpg', // 実際にはありえない
+                cold: '/static/img/male/snow-cold.jpg',
+                freezing: '/static/img/male/snow-freezing.jpg'
             }
         },
         female: {
             sunny: {
-                hot: '../img/female/sunny-hot.jpg',
-                warm: '../img/female/sunny-warm.jpg',
-                cold: '../img/female/sunny-cold.jpg',
-                freezing: '../img/female/sunny-freezing.jpg'
+                hot: '/static/img/female/sunny-hot.jpg',
+                warm: '/static/img/female/sunny-warm.jpg',
+                cold: '/static/img/female/sunny-cold.jpg',
+                freezing: '/static/img/female/sunny-freezing.jpg'
             },
             rain: {
-                hot: '../img/female/rain-hot.jpg',
-                warm: '../img/female/rain-warm.jpg',
-                cold: '../img/female/rain-cold.jpg',
-                freezing: '../img/female/rain-freezing.jpg'
+                hot: '/static/img/female/rain-hot.jpg',
+                warm: '/static/img/female/rain-warm.jpg',
+                cold: '/static/img/female/rain-cold.jpg',
+                freezing: '/static/img/female/rain-freezing.jpg'
             },
             cloudy: {
-                hot: '../img/female/cloud-hot.jpg',
-                warm: '../img/female/cloud-warm.jpg',
-                cold: '../img/female/cloud-cold.jpg'
+                hot: '/static/img/female/cloud-hot.jpg',
+                warm: '/static/img/female/cloud-warm.jpg',
+                cold: '/static/img/female/cloud-cold.jpg',
+                freezing: '/static/img/female/cloud-freezing.jpg'
             },
             snow: {
-                cold: '../img/female/snow-cold.jpg',
-                freezing: '../img/female/snow-freezing.jpg'
+                hot: '/img/female/snow-cold.jpg', // 実際にはありえない
+                warm: '/static/img/female/snow-cold.jpg', // 実際にはありえない
+                cold: '/static/img/female/snow-cold.jpg',
+                freezing: '/static/img/female/snow-freezing.jpg'
             }
         }
     };
@@ -176,8 +182,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 image.src = imagePath;
                 image.alt = '推奨される服装';
                 image.className = 'clothing-image';
-                content.appendChild(image);
+                
+                // 画像のロードエラー時の処理を追加
+                image.onerror = function() {
+                    console.error('画像の読み込みに失敗しました:', imagePath);
+                    this.style.display = 'none';
+                };
 
+                content.appendChild(image);
                 messageDiv.appendChild(avatar);
                 messageDiv.appendChild(content);
                 chatMessages.appendChild(messageDiv);
@@ -199,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return 'sunny'; // デフォルト
     }
 
-    // 気温カテゴリを取得する関数を修正
+    // 気温カテゴリを取得する関数
     function getTempCategory(temp) {
         if (temp >= 30) return 'hot';
         if (temp >= 20) return 'warm';
