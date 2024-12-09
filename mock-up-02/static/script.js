@@ -101,8 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cloudy: {
                 hot: '../img/male/cloud-hot.jpg',
                 warm: '../img/male/cloud-warm.jpg',
-                cold: '../img/male/cloud-cold.jpg',
-                freezing: '../img/male/cloud-freezing.jpg'
+                cold: '../img/male/cloud-cold.jpg'
             },
             snow: {
                 cold: '../img/male/snow-cold.jpg',
@@ -125,8 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cloudy: {
                 hot: '../img/female/cloud-hot.jpg',
                 warm: '../img/female/cloud-warm.jpg',
-                cold: '../img/female/cloud-cold.jpg',
-                freezing: '../img/female/cloud-freezing.jpg'
+                cold: '../img/female/cloud-cold.jpg'
             },
             snow: {
                 cold: '../img/female/snow-cold.jpg',
