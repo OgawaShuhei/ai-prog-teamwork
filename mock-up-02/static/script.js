@@ -87,50 +87,50 @@ document.addEventListener('DOMContentLoaded', function() {
     const CLOTHING_IMAGES = {
         male: {
             sunny: {
-                hot: '/static/images/summer/male_tshirt.png',
-                warm: '/static/images/spring/male_shirt.png',
-                cold: '/static/images/autumn/male_coat.png',
-                freezing: '/static/images/winter/male_winter_coat.png'
+                hot: '../img/male/sunny-hot.jpg',
+                warm: '../img/male/sunny-warm.jpg',
+                cold: '../img/male/sunny-cold.jpg',
+                freezing: '../img/male/sunny-freezing.jpg'
             },
             rain: {
-                hot: '/static/images/summer/male_tshirt_umbrella.png',
-                warm: '/static/images/spring/male_shirt_umbrella.png',
-                cold: '/static/images/autumn/male_coat_umbrella.png',
-                freezing: '/static/images/winter/male_winter_coat_umbrella.png'
+                hot: '../img/male/rain-hot.jpg',
+                warm: '../img/male/rain-warm.jpg',
+                cold: '../img/male/rain-cold.jpg',
+                freezing: '../img/male/rain-freezing.jpg'
             },
             cloudy: {
-                hot: '/static/images/summer/male_tshirt.png',
-                warm: '/static/images/spring/male_shirt.png',
-                cold: '/static/images/autumn/male_coat.png',
-                freezing: '/static/images/winter/male_winter_coat.png'
+                hot: '../img/male/cloud-hot.jpg',
+                warm: '../img/male/cloud-warm.jpg',
+                cold: '../img/male/cloud-cold.jpg',
+                freezing: '../img/male/cloud-freezing.jpg'
             },
             snow: {
-                cold: '/static/images/winter/male_heavy_winter_coat.png',
-                freezing: '/static/images/winter/male_warmest_coat.png'
+                cold: '../img/male/snow-cold.jpg',
+                freezing: '../img/male/snow-freezing.jpg'
             }
         },
         female: {
             sunny: {
-                hot: '/static/images/summer/female_dress.png',
-                warm: '/static/images/spring/female_blouse.png',
-                cold: '/static/images/autumn/female_coat.png',
-                freezing: '/static/images/winter/female_winter_coat.png'
+                hot: '../img/female/sunny-hot.jpg',
+                warm: '../img/female/sunny-warm.jpg',
+                cold: '../img/female/sunny-cold.jpg',
+                freezing: '../img/female/sunny-freezing.jpg'
             },
             rain: {
-                hot: '/static/images/summer/female_dress_umbrella.png',
-                warm: '/static/images/spring/female_blouse_umbrella.png',
-                cold: '/static/images/autumn/female_coat_umbrella.png',
-                freezing: '/static/images/winter/female_winter_coat_umbrella.png'
+                hot: '../img/female/rain-hot.jpg',
+                warm: '../img/female/rain-warm.jpg',
+                cold: '../img/female/rain-cold.jpg',
+                freezing: '../img/female/rain-freezing.jpg'
             },
             cloudy: {
-                hot: '/static/images/summer/female_dress.png',
-                warm: '/static/images/spring/female_blouse.png',
-                cold: '/static/images/autumn/female_coat.png',
-                freezing: '/static/images/winter/female_winter_coat.png'
+                hot: '../img/female/cloud-hot.jpg',
+                warm: '../img/female/cloud-warm.jpg',
+                cold: '../img/female/cloud-cold.jpg',
+                freezing: '../img/female/cloud-freezing.jpg'
             },
             snow: {
-                cold: '/static/images/winter/female_heavy_winter_coat.png',
-                freezing: '/static/images/winter/female_warmest_coat.png'
+                cold: '../img/female/snow-cold.jpg',
+                freezing: '../img/female/snow-freezing.jpg'
             }
         }
     };
