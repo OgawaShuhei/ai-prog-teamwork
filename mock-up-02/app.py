@@ -54,45 +54,6 @@ def get_weather():
         print(f"Error: {str(e)}")
         return jsonify({'error': '天気情報の取得に失敗しました。'}), 500
 
-@app.route('/api/weather/coords', methods=['POST'])
-def get_weather_by_coords():
-    try:
-        data = request.json
-        lat = data.get('lat')
-        lon = data.get('lon')
-        
-        if not lat or not lon:
-            return jsonify({'error': '位置情報が不正です。'}), 400
-
-        url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric&lang=ja'
-        response = requests.get(url)
-        
-        if response.status_code == 200:
-            weather_data = response.json()
-            weather = weather_data['weather'][0]['description']
-            temp = weather_data['main']['temp']
-            city = weather_data.get('name', '不明な地域')
-            advice = get_clothing_advice(temp)
-            
-            # メッセージをセッションに保存
-            message = f"現在地（{city}）の天気は{weather}で、気温は{temp}℃です。{advice}"
-            if 'messages' not in session:
-                session['messages'] = []
-            session['messages'].append({'sender': 'bot', 'message': message})
-            
-            return jsonify({
-                'weather': weather,
-                'temp': temp,
-                'city': city,
-                'advice': advice
-            })
-        else:
-            return jsonify({'error': '天気情報を取得できませんでした。'}), 404
-            
-    except Exception as e:
-        print(f"Error in get_weather_by_coords: {str(e)}")
-        return jsonify({'error': '天気情報の取得に失敗しました。'}), 500
-
 @app.route('/api/messages', methods=['GET'])
 def get_messages():
     return jsonify(session.get('messages', []))
@@ -101,6 +62,17 @@ def get_messages():
 def delete_messages():
     session.pop('messages', None)
     return jsonify({'status': 'success', 'message': 'メッセージが削除されました。'})
+
+@app.route('/api/messages', methods=['POST'])
+def save_message():
+    data = request.json
+    if 'messages' not in session:
+        session['messages'] = []
+    session['messages'].append({
+        'message': data['message'],
+        'sender': data['sender']
+    })
+    return jsonify({'status': 'success'})
 
 def get_clothing_advice(temp):
     if temp <= 0.0:
@@ -120,7 +92,7 @@ def get_clothing_advice(temp):
     elif 22.1 <= temp <= 24.0:
         return "半袖で過ごせますが、薄いカーディガンがあると安心です。"
     else:
-        return "暑いです。半袖��過ごせます。"
+        return "暑いです。半袖で過ごせます。"
 
 if __name__ == '__main__':
     app.run(debug=True)
