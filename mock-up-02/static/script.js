@@ -87,50 +87,50 @@ document.addEventListener('DOMContentLoaded', function() {
     const CLOTHING_IMAGES = {
         male: {
             sunny: {
-                hot: '/static/images/summer/male_tshirt.png',
-                warm: '/static/images/spring/male_shirt.png',
-                cold: '/static/images/autumn/male_coat.png',
-                freezing: '/static/images/winter/male_winter_coat.png'
+                hot: '/static/img/male/sunny/hot.jpg',
+                warm: '/static/img/male/sunny/warm.jpg',
+                cold: '/static/img/male/sunny/cold.jpg',
+                freezing: '/static/img/male/sunny/freezing.jpg'
             },
             rain: {
-                hot: '/static/images/summer/male_tshirt_umbrella.png',
-                warm: '/static/images/spring/male_shirt_umbrella.png',
-                cold: '/static/images/autumn/male_coat_umbrella.png',
-                freezing: '/static/images/winter/male_winter_coat_umbrella.png'
+                hot: '/static/img/male/rain/hot.jpg',
+                warm: '/static/img/male/rain/warm.jpg',
+                cold: '/static/img/male/rain/cold.jpg',
+                freezing: '/static/img/male/rain/freezing.jpg'
             },
             cloudy: {
-                hot: '/static/images/summer/male_tshirt.png',
-                warm: '/static/images/spring/male_shirt.png',
-                cold: '/static/images/autumn/male_coat.png',
-                freezing: '/static/images/winter/male_winter_coat.png'
+                hot: '/static/img/male/cloudy/hot.jpg',
+                warm: '/static/img/male/cloudy/warm.jpg',
+                cold: '/static/img/male/cloudy/cold.jpg',
+                freezing: '/static/img/male/cloudy/freezing.jpg'
             },
             snow: {
-                cold: '/static/images/winter/male_heavy_winter_coat.png',
-                freezing: '/static/images/winter/male_warmest_coat.png'
+                cold: '/static/img/male/snow/cold.jpg',
+                freezing: '/static/img/male/snow/freezing.jpg'
             }
         },
         female: {
             sunny: {
-                hot: '/static/images/summer/female_dress.png',
-                warm: '/static/images/spring/female_blouse.png',
-                cold: '/static/images/autumn/female_coat.png',
-                freezing: '/static/images/winter/female_winter_coat.png'
+                hot: '/static/img/female/sunny/hot.jpg',
+                warm: '/static/img/female/sunny/warm.jpg',
+                cold: '/static/img/female/sunny/cold.jpg',
+                freezing: '/static/img/female/sunny/freezing.jpg'
             },
             rain: {
-                hot: '/static/images/summer/female_dress_umbrella.png',
-                warm: '/static/images/spring/female_blouse_umbrella.png',
-                cold: '/static/images/autumn/female_coat_umbrella.png',
-                freezing: '/static/images/winter/female_winter_coat_umbrella.png'
+                hot: '/static/img/female/rain/hot.jpg',
+                warm: '/static/img/female/rain/warm.jpg',
+                cold: '/static/img/female/rain/cold.jpg',
+                freezing: '/static/img/female/rain/freezing.jpg'
             },
             cloudy: {
-                hot: '/static/images/summer/female_dress.png',
-                warm: '/static/images/spring/female_blouse.png',
-                cold: '/static/images/autumn/female_coat.png',
-                freezing: '/static/images/winter/female_winter_coat.png'
+                hot: '/static/img/female/cloudy/hot.jpg',
+                warm: '/static/img/female/cloudy/warm.jpg',
+                cold: '/static/img/female/cloudy/cold.jpg',
+                freezing: '/static/img/female/cloudy/freezing.jpg'
             },
             snow: {
-                cold: '/static/images/winter/female_heavy_winter_coat.png',
-                freezing: '/static/images/winter/female_warmest_coat.png'
+                cold: '/static/img/female/snow/cold.jpg',
+                freezing: '/static/img/female/snow/freezing.jpg'
             }
         }
     };

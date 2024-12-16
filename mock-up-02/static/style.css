@@ -388,7 +388,7 @@ h1, h3 {
     box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
 }
 
-/* カスタムスクロールバー */
+/* カス��ムスクロールバー */
 .menu-content::-webkit-scrollbar,
 .chat-messages::-webkit-scrollbar {
     width: 5px;
@@ -548,7 +548,7 @@ h1, h3 {
     }
 }
 
-/* 性別切り替えボタン */
+/* 性別切り替えトグルボタンのスタイル */
 .gender-toggle {
     display: inline-block;
     margin: 0 10px;
@@ -563,7 +563,7 @@ h1, h3 {
     position: relative;
     width: 100px;
     height: 34px;
-    background: #4169e1;
+    background: #4169e1; /* 男性時の背景色（青） */
     border-radius: 17px;
     cursor: pointer;
     transition: 0.3s;
@@ -583,7 +583,7 @@ h1, h3 {
 }
 
 .toggle-input:checked + .toggle-label {
-    background: #ff69b4;
+    background: #ff69b4; /* 女性時の背景色（ピンク） */
 }
 
 .toggle-input:checked + .toggle-label:before {
