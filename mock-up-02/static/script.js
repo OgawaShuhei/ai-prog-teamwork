@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const saveShortcutButton = document.getElementById('saveShortcutButton');
     const reloadButton = document.getElementById('reloadButton');
     const shortcuts = document.getElementById('shortcuts');
+    const genderToggle = document.getElementById('genderToggle');
 
     // ページロード時にメッセージを復元
     loadMessages();
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // チャットメッセージをクリア
         chatMessages.innerHTML = '';
         
-        // 最初のボットメッセージを復元
+        // 最初のボットメッ���ージを復元
         if (initialBotMessage) {
             chatMessages.appendChild(initialBotMessage.cloneNode(true));
         }
@@ -166,6 +167,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const content = document.createElement('div');
                 content.className = 'message-content';
 
+                // 天気カテゴリを取得
+                const weatherCategory = getWeatherCategory(data.weather);
+                
+                // デバッグ情報をコンソールに出力
+                console.log('Weather API response:', data.weather);
+                console.log('Categorized as:', weatherCategory);
+
                 // テキストメッセージを追加
                 const textDiv = document.createElement('div');
                 textDiv.textContent = `${city}の天気は${data.weather}で、気温は${data.temp}℃です。${data.advice}`;
@@ -173,9 +181,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // 画像パスを取得
                 const gender = isFemale ? 'female' : 'male';
-                const weather = getWeatherCategory(data.weather);
                 const tempRange = getTempCategory(parseInt(data.temp));
-                const imagePath = CLOTHING_IMAGES[gender][weather][tempRange];
+                const imagePath = CLOTHING_IMAGES[gender][weatherCategory][tempRange];
 
                 // 画像を追加
                 const image = document.createElement('img');
@@ -186,6 +193,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 画像のロードエラー時の処理を追加
                 image.onerror = function() {
                     console.error('画像の読み込みに失敗しました:', imagePath);
+                    console.error('Weather:', data.weather);
+                    console.error('Category:', weatherCategory);
+                    console.error('Temperature:', data.temp);
+                    console.error('Temperature Category:', tempRange);
                     this.style.display = 'none';
                 };
 
@@ -202,13 +213,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 天候カテゴリを取得する関数
+    // 天候カテゴリを取得する関数を修正
     function getWeatherCategory(weather) {
-        if (weather.includes('雨')) return 'rain';
-        if (weather.includes('雪')) return 'snow';
-        if (weather.includes('曇')) return 'cloudy';
-        if (weather.includes('晴')) return 'sunny';
-        return 'sunny'; // デフォルト
+        // APIから返される天気の日本語表記に基づいて判定
+        if (weather.includes('雨')) {
+            return 'rain';
+        } else if (weather.includes('雪')) {
+            return 'snow';
+        } else if (weather.includes('曇')) {
+            return 'cloudy';
+        } else if (weather.includes('晴')) {
+            if (weather.includes('曇')) {
+                return 'cloudy';  // 晴れ時々曇りなどの場合は曇りとして扱う
+            }
+            return 'sunny';
+        } else {
+            console.log('未分類の天気:', weather);  // デバッグ用
+            return 'sunny';  // デフォルト
+        }
     }
 
     // 気温カテゴリを取得する関数
@@ -219,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return 'freezing';
     }
 
-    // スクロールを下に移動する関数
+    // スク���ールを下に移動する関数
     function scrollToBottom() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
@@ -305,4 +327,22 @@ document.addEventListener('DOMContentLoaded', function() {
             menuContent.classList.remove('active');
         }
     });
+
+    // 性別選択の状態を復元
+    loadGenderPreference();
+
+    // 性別選択の変更を保存
+    genderToggle.addEventListener('change', function() {
+        localStorage.setItem('genderPreference', this.checked);
+    });
 });
+
+// 性別選択の状態を復元する関数
+function loadGenderPreference() {
+    const genderToggle = document.getElementById('genderToggle');
+    const savedPreference = localStorage.getItem('genderPreference');
+    
+    if (savedPreference !== null) {
+        genderToggle.checked = savedPreference === 'true';
+    }
+}
