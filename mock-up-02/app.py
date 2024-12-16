@@ -2,11 +2,12 @@ from flask import Flask, render_template, request, jsonify, session
 import requests
 from googletrans import Translator
 import os
+import json
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)  # セッションのための秘密鍵
+app.secret_key = os.urandom(24)
 
-API_KEY = '1c33c613c2357110a08a8964f4aa621f'  # ここにOpenWeatherMapのAPIキーを入力
+API_KEY = '1c33c613c2357110a08a8964f4aa621f'
 
 # Googletrans Translatorの初期化
 translator = Translator()
@@ -23,25 +24,74 @@ def get_weather():
         return jsonify({'error': '都市名が指定されていません。'}), 400
 
     # 日本語の都市名を英語に翻訳
-    translated_city = translator.translate(city, dest='en').text
+    try:
+        translated_city = translator.translate(city, dest='en').text
+        url = f'http://api.openweathermap.org/data/2.5/weather?q={translated_city}&appid={API_KEY}&units=metric&lang=ja'
+        response = requests.get(url)
+        
+        if response.status_code == 200:
+            weather_data = response.json()
+            weather = weather_data['weather'][0]['description']
+            temp = weather_data['main']['temp']
+            advice = get_clothing_advice(temp)
+            
+            # メッセージをセッションに保存
+            message = f"{city}の天気は{weather}で、気温は{temp}℃です。{advice}"
+            if 'messages' not in session:
+                session['messages'] = []
+            session['messages'].append({'sender': 'bot', 'message': message})
+            
+            return jsonify({
+                'weather': weather,
+                'temp': temp,
+                'advice': advice,
+                'city': city
+            })
+        else:
+            return jsonify({'error': '都市が見つかりませんでした。'}), 404
+            
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return jsonify({'error': '天気情報の取得に失敗しました。'}), 500
 
-    url = f'http://api.openweathermap.org/data/2.5/weather?q={translated_city}&appid={API_KEY}&units=metric&lang=ja'
-    response = requests.get(url)
-    if response.status_code == 200:
-        weather_data = response.json()
-        weather = weather_data['weather'][0]['description']
-        temp = weather_data['main']['temp']
-        advice = get_clothing_advice(temp)
+@app.route('/api/weather/coords', methods=['POST'])
+def get_weather_by_coords():
+    try:
+        data = request.json
+        lat = data.get('lat')
+        lon = data.get('lon')
         
-        # メッセージをセッションに保存
-        message = f"{city}の天気は{weather}で、気温は{temp}℃です。{advice}"
-        if 'messages' not in session:
-            session['messages'] = []
-        session['messages'].append({'sender': 'bot', 'message': message})
+        if not lat or not lon:
+            return jsonify({'error': '位置情報が不正です。'}), 400
+
+        url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric&lang=ja'
+        response = requests.get(url)
         
-        return jsonify({'weather': weather, 'temp': temp, 'advice': advice})
-    else:
-        return jsonify({'error': '都市が見つかりませんでした。'}), 404
+        if response.status_code == 200:
+            weather_data = response.json()
+            weather = weather_data['weather'][0]['description']
+            temp = weather_data['main']['temp']
+            city = weather_data.get('name', '不明な地域')
+            advice = get_clothing_advice(temp)
+            
+            # メッセージをセッションに保存
+            message = f"現在地（{city}）の天気は{weather}で、気温は{temp}℃です。{advice}"
+            if 'messages' not in session:
+                session['messages'] = []
+            session['messages'].append({'sender': 'bot', 'message': message})
+            
+            return jsonify({
+                'weather': weather,
+                'temp': temp,
+                'city': city,
+                'advice': advice
+            })
+        else:
+            return jsonify({'error': '天気情報を取得できませんでした。'}), 404
+            
+    except Exception as e:
+        print(f"Error in get_weather_by_coords: {str(e)}")
+        return jsonify({'error': '天気情報の取得に失敗しました。'}), 500
 
 @app.route('/api/messages', methods=['GET'])
 def get_messages():
@@ -70,7 +120,7 @@ def get_clothing_advice(temp):
     elif 22.1 <= temp <= 24.0:
         return "半袖で過ごせますが、薄いカーディガンがあると安心です。"
     else:
-        return "暑いです。半袖で過ごせます。"
+        return "暑いです。半袖��過ごせます。"
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // チャットメッセージをクリア
         chatMessages.innerHTML = '';
         
-        // 最初のボットメッ���ージを復元
+        // 最初のボットメッセージを復元
         if (initialBotMessage) {
             chatMessages.appendChild(initialBotMessage.cloneNode(true));
         }
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return 'freezing';
     }
 
-    // スク���ールを下に移動する関数
+    // スクロールを下に移動する関数
     function scrollToBottom() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
@@ -335,6 +335,19 @@ document.addEventListener('DOMContentLoaded', function() {
     genderToggle.addEventListener('change', function() {
         localStorage.setItem('genderPreference', this.checked);
     });
+
+    // GPS取得ボタンを追加
+    const gpsButton = document.createElement('button');
+    gpsButton.type = 'button';
+    gpsButton.id = 'gpsButton';
+    gpsButton.innerHTML = '📍 現在地';
+    gpsButton.className = 'gps-button';
+    
+    // フォームにGPSボタンを追加
+    chatForm.insertBefore(gpsButton, chatForm.firstChild);
+
+    // GPS取得ボタンのクリックイベント
+    gpsButton.addEventListener('click', getCurrentLocation);
 });
 
 // 性別選択の状態を復元する関数
@@ -344,5 +357,122 @@ function loadGenderPreference() {
     
     if (savedPreference !== null) {
         genderToggle.checked = savedPreference === 'true';
+    }
+}
+
+// 位置情報を取得する関数を修正
+function getCurrentLocation() {
+    // Mozilla Geolocation APIのオプション設定
+    const options = {
+        enableHighAccuracy: true,  // 高精度な位置情報を要求
+        timeout: 5000,            // タイムアウト時間（ミリ秒）
+        maximumAge: 0             // キャッシュした位置情報を使用しない
+    };
+
+    if ("geolocation" in navigator) {
+        addMessage("位置情報を取得中です...", 'bot');
+        
+        // Mozilla Geolocation APIを使用して位置情報を取得
+        navigator.geolocation.getCurrentPosition(
+            // 成功時のコールバック
+            position => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                const accuracy = position.coords.accuracy;
+
+                console.log(`位置情報取得成功 - 緯度: ${latitude}, 経度: ${longitude}, 精度: ${accuracy}m`);
+
+                // 位置情報を使用して天気を取得
+                fetch('/api/weather/coords', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        lat: latitude,
+                        lon: longitude,
+                        isFemale: document.getElementById('genderToggle').checked
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.error) {
+                        addMessage(data.error, 'bot');
+                    } else {
+                        // メッセージの表示
+                        const messageDiv = document.createElement('div');
+                        messageDiv.className = 'message bot-message';
+
+                        const avatar = document.createElement('div');
+                        avatar.className = 'avatar';
+                        avatar.textContent = 'AI';
+
+                        const content = document.createElement('div');
+                        content.className = 'message-content';
+
+                        // テキストメッセージを追加
+                        const textDiv = document.createElement('div');
+                        textDiv.textContent = `現在地（${data.city}）の天気は${data.weather}で、気温は${data.temp}℃です。${data.advice}`;
+                        content.appendChild(textDiv);
+
+                        // 画像の表示処理
+                        const gender = document.getElementById('genderToggle').checked ? 'female' : 'male';
+                        const weather = getWeatherCategory(data.weather);
+                        const tempRange = getTempCategory(parseInt(data.temp));
+                        const imagePath = CLOTHING_IMAGES[gender][weather][tempRange];
+
+                        // 画像を追加
+                        const image = document.createElement('img');
+                        image.src = imagePath;
+                        image.alt = '推奨される服装';
+                        image.className = 'clothing-image';
+                        
+                        image.onerror = function() {
+                            console.error('画像の読み込みに失敗:', imagePath);
+                            this.style.display = 'none';
+                        };
+
+                        content.appendChild(image);
+                        messageDiv.appendChild(avatar);
+                        messageDiv.appendChild(content);
+                        chatMessages.appendChild(messageDiv);
+                        scrollToBottom();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    addMessage('天気情報の取得に失敗しました。', 'bot');
+                });
+            },
+            // エラー時のコールバック
+            error => {
+                console.error('Geolocation error:', error);
+                let errorMessage;
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        errorMessage = "位置情報の使用が許可されていません。ブラウザの設定をご確認ください。";
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        errorMessage = "位置情報を取得できませんでした。電波状況をご確認ください。";
+                        break;
+                    case error.TIMEOUT:
+                        errorMessage = "位置情報の取得がタイムアウトしました。再度お試しください。";
+                        break;
+                    default:
+                        errorMessage = "予期せぬエラーが発生しました。";
+                }
+                addMessage(errorMessage, 'bot');
+            },
+            // オプション
+            options
+        );
+    } else {
+        addMessage("お使いのブラウザは位置情報に対応していません。", 'bot');
     }
 }

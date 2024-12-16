@@ -388,7 +388,7 @@ h1, h3 {
     box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
 }
 
-/* カスタムスクロールバー */
+/* カス��ムスクロールバー */
 .menu-content::-webkit-scrollbar,
 .chat-messages::-webkit-scrollbar {
     width: 5px;
@@ -624,4 +624,24 @@ h1, h3 {
 
 .toggle-input:checked + .toggle-label .female {
     opacity: 1;
+}
+
+/* GPSボタンのスタイル */
+.gps-button {
+    padding: 8px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.gps-button:hover {
+    background-color: #45a049;
+}
+
+.gps-button:active {
+    background-color: #3d8b40;
 }
