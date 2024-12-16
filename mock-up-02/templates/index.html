@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お天気AI ChatBOT</title>
+    <title>Weather Fashion Advisor</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -11,18 +11,21 @@
         <header>
             <h1>Chat Room</h1>
             <h3>天気＆おすすめの服装</h3>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="menu-content" id="menuContent">
-                <div id="shortcut-list">
-                    <h4>登録された地域</h4>
-                    <ul id="shortcuts"></ul>
+            <div class="menu-container">
+                <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+                <label for="menu-toggle" class="menu-button">
+                    <span class="hamburger"></span>
+                </label>
+                <div class="menu-content">
+                    <div class="gender-toggle-container">
+                        <span class="gender-label">男性/女性</span>
+                        <label class="switch">
+                            <input type="checkbox" id="genderToggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <button id="clearHistory" class="menu-button">💫 履歴をクリア</button>
                 </div>
-                <button id="clearButton">クリア</button>
-                <button id="reloadButton">リロード</button>
             </div>
         </header>
         <main>

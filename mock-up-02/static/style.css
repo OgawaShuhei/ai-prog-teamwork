@@ -25,50 +25,120 @@ h1, h3 {
     padding: 5px 0;
 }
 
-/* ハンバーガーメニュー */
-.menu-toggle {
+/* ハンバーガーメニューのスタイル */
+.menu-container {
     position: fixed;
     top: 20px;
     right: 20px;
+    z-index: 1000;
+}
+
+.menu-checkbox {
+    display: none;
+}
+
+.menu-button {
+    display: block;
     width: 30px;
     height: 30px;
+    position: relative;
     cursor: pointer;
-    z-index: 1000;
-    background-color: white;
-    border-radius: 5px;
-    padding: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 2;
 }
 
-.menu-toggle span {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background-color: #333;
-    margin: 4px auto;
-    transition: all 0.3s ease-in-out;
+.hamburger {
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background: #333;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background 0.3s;
 }
 
-.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.menu-toggle.active span:nth-child(2) { opacity: 0; }
-.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background: #333;
+    transition: transform 0.3s;
+}
+
+.hamburger::before {
+    top: -10px;
+}
+
+.hamburger::after {
+    top: 10px;
+}
+
+/* メニューが開いているときのハンバーガーアイコン */
+.menu-checkbox:checked + .menu-button .hamburger {
+    background: transparent;
+}
+
+.menu-checkbox:checked + .menu-button .hamburger::before {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.menu-checkbox:checked + .menu-button .hamburger::after {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
 
 /* メニューコンテンツ */
 .menu-content {
     position: fixed;
     top: 0;
-    right: -100%;
-    width: 250px;
+    right: -300px;
+    width: 300px;
     height: 100vh;
-    background-color: #f8f9fa;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    background: white;
     padding: 60px 20px 20px;
-    transition: all 0.3s ease-in-out;
-    z-index: 999;
-    overflow-y: auto;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s;
 }
 
-.menu-content.active { right: 0; }
+.menu-checkbox:checked ~ .menu-content {
+    right: 0;
+}
+
+/* メニューボタンの共通スタイル */
+.menu-button.gps-button {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 5px 0;
+    border: none;
+    background: none;
+    color: #333;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-button.gps-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* GPS取得ボタンのスタイル */
+.gps-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+/* 性別切り替えスイッチのコンテナ */
+.gender-toggle-container {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 /* ショートカットリスト */
 #shortcut-list {
@@ -388,7 +458,7 @@ h1, h3 {
     box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
 }
 
-/* カス��ムスクロールバー */
+/* カスタムスクロールバー */
 .menu-content::-webkit-scrollbar,
 .chat-messages::-webkit-scrollbar {
     width: 5px;
@@ -644,4 +714,40 @@ h1, h3 {
 
 .gps-button:active {
     background-color: #3d8b40;
+}
+
+/* メニューボタンの共通スタイル */
+.menu-button {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 5px 0;
+    border: none;
+    background: none;
+    color: #333;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* GPS取得ボタンのスタイル */
+.gps-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.gps-button::before {
+    content: '📍';
+    font-size: 16px;
+}
+
+/* メニューコンテンツのスタイル調整 */
+.menu-content {
+    padding: 10px 0;
 }
