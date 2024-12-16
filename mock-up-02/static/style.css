@@ -388,7 +388,7 @@ h1, h3 {
     box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
 }
 
-/* カスムスクロールバー */
+/* カス��ムスクロールバー */
 .menu-content::-webkit-scrollbar,
 .chat-messages::-webkit-scrollbar {
     width: 5px;
@@ -550,8 +550,7 @@ h1, h3 {
 
 /* 性別切り替えトグルボタンのスタイル */
 .gender-toggle {
-    display: flex;
-    align-items: center;
+    display: inline-block;
     margin: 0 10px;
 }
 
@@ -568,7 +567,6 @@ h1, h3 {
     border-radius: 17px;
     cursor: pointer;
     transition: 0.3s;
-    margin-right: 10px; /* ラベル間のスペース */
 }
 
 .toggle-label:before {
@@ -592,19 +590,38 @@ h1, h3 {
     transform: translateX(66px);
 }
 
-.toggle-label.male {
-    background: #4169e1; /* 男性時の背景色（青） */
+.toggle-label .male,
+.toggle-label .female {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    z-index: 1;
 }
 
-.toggle-label.female {
-    background: #ff69b4; /* 女性時の背景色（ピンク） */
+.toggle-label .male {
+    left: 10px;
 }
 
-/* ラジオボタンのスタイル */
-.toggle-input:checked + .toggle-label.male {
-    background: #4169e1; /* 男性時の背景色（青） */
+.toggle-label .female {
+    right: 10px;
 }
 
-.toggle-input:checked + .toggle-label.female {
-    background: #ff69b4; /* 女性時の背景色（ピンク） */
+/* アクティブな状態をより明確にする */
+.toggle-input:not(:checked) + .toggle-label .male {
+    opacity: 1;
+}
+
+.toggle-input:not(:checked) + .toggle-label .female {
+    opacity: 0.5;
+}
+
+.toggle-input:checked + .toggle-label .male {
+    opacity: 0.5;
+}
+
+.toggle-input:checked + .toggle-label .female {
+    opacity: 1;
 }
