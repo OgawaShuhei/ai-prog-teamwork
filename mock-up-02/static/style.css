@@ -388,7 +388,7 @@ h1, h3 {
     box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
 }
 
-/* カスムスクロールバー */
+/* カス��スクロールバー */
 .menu-content::-webkit-scrollbar,
 .chat-messages::-webkit-scrollbar {
     width: 5px;
@@ -548,7 +548,7 @@ h1, h3 {
     }
 }
 
-/* 性別切り替えトグルボタンのスタイル */
+/* 性別切り替えトグルボタン���スタイル */
 .gender-toggle {
     display: inline-block;
     margin: 0 10px;
