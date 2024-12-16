@@ -46,11 +46,10 @@
                     <form id="chat-form">
                         <input type="text" id="user-input" placeholder="都市名を入力..." autocomplete="off">
                         <div class="gender-toggle">
-                            <input type="checkbox" id="genderToggle" class="toggle-input">
-                            <label for="genderToggle" class="toggle-label">
-                                <span class="male">男性</span>
-                                <span class="female">女性</span>
-                            </label>
+                            <input type="radio" id="male" name="gender" value="male" class="toggle-input" checked>
+                            <label for="male" class="toggle-label">男性</label>
+                            <input type="radio" id="female" name="gender" value="female" class="toggle-input">
+                            <label for="female" class="toggle-label">女性</label>
                         </div>
                         <button type="submit">送信</button>
                         <button type="button" id="saveShortcutButton">登録</button>
