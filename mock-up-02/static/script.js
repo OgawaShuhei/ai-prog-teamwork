@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 天気情報を取得する関数
     function fetchWeather(city) {
-        const isFemale = document.querySelector('input[name="gender"]:checked').value === 'female';
+        const isFemale = document.getElementById('genderToggle').checked;
         
         fetch('/api/weather', {
             method: 'POST',
@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('shortcuts', JSON.stringify(savedShortcuts));
     }
 
-    // ハンバーガーメニューの制御���追加
+    // ハンバーガーメニューの制御を追加
     const menuToggle = document.getElementById('menuToggle');
     const menuContent = document.getElementById('menuContent');
 
